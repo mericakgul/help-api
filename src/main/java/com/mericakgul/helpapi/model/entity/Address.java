@@ -22,7 +22,7 @@ public class Address {
     private String streetName;
 
     @Column(name = "house_number")
-    private int houseNumber;
+    private Integer houseNumber;
 
     @Column(name = "zip_code")
     private String zipCode;
@@ -32,5 +32,4 @@ public class Address {
 
     @Column(name = "country")
     private String country;
-
 }

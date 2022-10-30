@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Setter
 @Getter
 public class User {
@@ -22,16 +22,14 @@ public class User {
     @Type(type = "uuid-char")
     private UUID id = UUID.randomUUID();
 
-    @NotNull
-    @NotEmpty
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "full_name")
     private String fullName;
-
-    @NotNull
-    @NotEmpty
-    @Column(name = "email")
-    @Email
-    private String email;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -43,15 +41,8 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Address> addresses = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "busy_dates_id")
-    )
-    private List<BusyPeriod> busyPeriodList = new ArrayList<>();
-
     @ElementCollection(targetClass = SkillType.class)
     @Enumerated(EnumType.STRING)
-    private EnumSet<SkillType> skills;
+    private List<SkillType> skills;
 
 }
