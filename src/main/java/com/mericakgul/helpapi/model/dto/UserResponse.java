@@ -14,10 +14,16 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserResponse {
     private UUID id;
+
     private String email;
+
     private String fullName;
+
     private String phoneNumber;
+
     private String description;
+
     private List<AddressDto> addresses;
+
     private List<SkillType> skills;
 }

@@ -33,6 +33,8 @@ public class UserRequest {
     private List<AddressDto> addresses;
 
     private String phoneNumber;
+
     private String description;
+
     private List<SkillType> skills;
 }
