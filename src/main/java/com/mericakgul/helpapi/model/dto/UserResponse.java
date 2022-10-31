@@ -18,6 +18,6 @@ public class UserResponse {
     private String fullName;
     private String phoneNumber;
     private String description;
-    private List<Address> addresses;
+    private List<AddressDto> addresses;
     private List<SkillType> skills;
 }

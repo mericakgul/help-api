@@ -18,17 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    private final AddressRepository addressRepository;
     private final DtoMapper dtoMapper;
 
     @Transactional
     public UserResponse save(UserRequest userRequest) {
         User user = this.dtoMapper.mapModel(userRequest, User.class);
-        List<Address> savedAddresses = this.addressRepository.saveAll(user.getAddresses());
-//        List<AddressDto> savedAddresses = this.addressService.saveAll(userRequest.getAddresses());
-//        List<Address> mappedAddresses = this.dtoMapper.mapListModel(savedAddresses, Address.class);
-        user.setAddresses(savedAddresses);
         User savedUser = this.userRepository.save(user);
         return this.dtoMapper.mapModel(savedUser, UserResponse.class);
     }

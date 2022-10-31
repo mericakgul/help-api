@@ -16,7 +16,7 @@ public class Address {
     @Id
     @GeneratedValue
     @Type(type = "uuid-char")
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
 
     @Column(name = "street_name")
     private String streetName;
@@ -32,4 +32,8 @@ public class Address {
 
     @Column(name = "country")
     private String country;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 }

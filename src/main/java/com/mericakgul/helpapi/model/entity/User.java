@@ -6,9 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
@@ -20,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue
     @Type(type = "uuid-char")
-    private UUID id = UUID.randomUUID();
+    private UUID id;
 
     @Column(name = "email")
     private String email;
@@ -37,7 +34,7 @@ public class User {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private List<Address> addresses = new ArrayList<>();
 
