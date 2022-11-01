@@ -4,6 +4,8 @@ import com.mericakgul.helpapi.enums.SkillType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,14 +14,17 @@ import java.util.*;
 @Table(name = "users")
 @Setter
 @Getter
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column(name = "email")
+    @Column(name = "username", unique = true)
+    private String username;
+
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -42,4 +47,27 @@ public class User {
     @Enumerated(EnumType.STRING)
     private List<SkillType> skills;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

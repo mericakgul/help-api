@@ -17,6 +17,10 @@ public class UserRequest {
 
     @NotNull
     @NotEmpty
+    private String username;
+
+    @NotNull
+    @NotEmpty
     @Email
     private String email;
 
