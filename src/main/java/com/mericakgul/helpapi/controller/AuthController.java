@@ -17,7 +17,6 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-
     private final AuthService authService;
 
     // Login is sent with Post request to be able to send the login info in requestbody.

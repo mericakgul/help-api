@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     @Type(type = "uuid-char")
-    private UUID id;
+    private UUID uuid;
 
     @Column(name = "username", unique = true)
     private String username;
