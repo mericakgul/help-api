@@ -3,10 +3,8 @@ package com.mericakgul.helpapi.controller;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,9 +26,17 @@ public class UserController {
     public UserResponse findByUuid(@PathVariable UUID userId){
         return this.userService.findByUuid(userId);
     }
-    // find user by id
 
-    // delete user by id
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteByUuid(@PathVariable UUID userId){
+        this.userService.deleteByUuid(userId);
+        return ResponseEntity.ok().body("The user with this uuid has been deleted: " + userId);
+    }
+    // When we do soft deleting we do not delete the user for real but just not showing it anymore.
+    // In this case we can still not create another user with the same username and email because uniqueness is still running for JPA.
+    // What kinda solution can be applied here?
+
+
 
     // update user details
 

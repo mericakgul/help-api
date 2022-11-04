@@ -7,8 +7,10 @@ import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,5 +34,13 @@ public class UserService {
         User user = this.userRepository.findByUuid(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this id."));
         return this.dtoMapper.mapModel(user, UserResponse.class);
+    }
+
+    @Transactional
+    public void deleteByUuid(UUID userId) {
+        User user = this.userRepository.findByUuid(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this id to delete."));
+        user.setDeletedDate(new Date());
+        this.userRepository.save(user);
     }
 }
