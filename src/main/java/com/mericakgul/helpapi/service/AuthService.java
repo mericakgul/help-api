@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
@@ -35,13 +36,14 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Request body not found.");
         }
     }
+    @Transactional
     public UserResponse signUp(UserRequest userRequest){
         try{
             User user = this.dtoMapper.mapModel(userRequest, User.class);
             user.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
             return this.userDetailService.save(user);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There occurred an error while signing up. Username or email might already be in use.");
         }
     }
 }

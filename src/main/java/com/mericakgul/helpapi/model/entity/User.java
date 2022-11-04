@@ -47,6 +47,13 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private List<SkillType> skills;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "busy_period_id")
+    )
+    private List<BusyPeriod> busyPeriods = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>();

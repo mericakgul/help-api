@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AddressDto {
+
     private String streetName;
 
     private Integer houseNumber;
