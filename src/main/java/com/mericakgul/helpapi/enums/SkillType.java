@@ -17,7 +17,14 @@ public enum SkillType {
 }
 
 // TODO
-/* First: Finish creating users
+/* First: Finish updating user info
 Second: Create filtering and listing available providers Requests (by using skill and dates)
 Third: Request an appointment with the provider user id and put it in its busyPeriods.
  */
+
+// Deleting related addresses when a user is deleted
+// Deleting related busy dates (in case there is no other usage) when a user is deleted.
+// Updating addresses through user entity
+// Updating busy dates through user entity
+// Updating skills through user entity
+// Updating, deleting addresses and busy dates from their own end points

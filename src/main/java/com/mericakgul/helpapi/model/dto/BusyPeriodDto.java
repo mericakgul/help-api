@@ -11,6 +11,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class BusyPeriodDto {
 
+    private Long id;
+
     private LocalDate startDate;
 
     private LocalDate endDate;

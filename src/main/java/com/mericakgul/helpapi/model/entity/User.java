@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     @Type(type = "uuid-char")
-    private UUID uuid;
+    private UUID userUuid;
 
     @Column(name = "username", unique = true)
     private String username;
@@ -42,11 +42,8 @@ public class User implements UserDetails {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "deleted_date")
-    private Date deletedDate = DeletedDateUtil.getDefaultDeletedDate();
-
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_uuid")
     private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection(targetClass = SkillType.class)
@@ -55,11 +52,13 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            joinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name = "user_uuid"),
             inverseJoinColumns = @JoinColumn(name = "busy_period_id")
     )
     private List<BusyPeriod> busyPeriods = new ArrayList<>();
 
+    @Column(name = "deleted_date")
+    private Date deletedDate = DeletedDateUtil.getDefaultDeletedDate();
 
 
     @Override

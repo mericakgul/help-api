@@ -23,7 +23,7 @@ public class TokenManager {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (expireMinutes * 60 * 100)))
+                .setExpiration(new Date(System.currentTimeMillis() + (expireMinutes * 60 * 1000)))
                 .signWith(SignatureAlgorithm.HS256, this.secretKey)
                 .compact();
     }
@@ -37,7 +37,7 @@ public class TokenManager {
                     .getBody();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-                    "The token that was sent is not a token signed by this server.");
+                    "The token that was sent is not a token signed by this server or expired.");
         }
     }
 
