@@ -22,7 +22,7 @@ Second: Create filtering and listing available providers Requests (by using skil
 Third: Request an appointment with the provider user id and put it in its busyPeriods.
  */
 
-// Deleting related addresses when a user is deleted
+// Save busyperiod first manually when saving user
 // Deleting related busy dates (in case there is no other usage) when a user is deleted.
 // Updating addresses through user entity
 // Updating busy dates through user entity

@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -39,9 +41,8 @@ public class AuthService {
     @Transactional
     public UserResponse signUp(UserRequest userRequest){
         try{
-            User user = this.dtoMapper.mapModel(userRequest, User.class);
-            user.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
-            return this.userDetailService.save(user);
+            userRequest.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
+            return this.userDetailService.save(userRequest);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There occurred an error while signing up. Username or email might already be in use.");
         }
