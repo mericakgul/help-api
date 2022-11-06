@@ -2,9 +2,7 @@ package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
-import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
-import com.mericakgul.helpapi.model.entity.Address;
 import com.mericakgul.helpapi.model.entity.User;
 import com.mericakgul.helpapi.repository.AddressRepository;
 import com.mericakgul.helpapi.repository.UserRepository;
@@ -15,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor

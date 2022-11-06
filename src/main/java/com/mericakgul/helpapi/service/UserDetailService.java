@@ -4,7 +4,6 @@ import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
-import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
 import com.mericakgul.helpapi.repository.BusyPeriodRepository;
 import com.mericakgul.helpapi.repository.UserRepository;

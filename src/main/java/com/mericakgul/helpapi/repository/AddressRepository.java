@@ -1,7 +1,6 @@
 package com.mericakgul.helpapi.repository;
 
 import com.mericakgul.helpapi.model.entity.Address;
-import com.mericakgul.helpapi.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,16 +1,12 @@
 package com.mericakgul.helpapi.controller;
 
-import com.mericakgul.helpapi.model.dto.LoginDto;
-import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
