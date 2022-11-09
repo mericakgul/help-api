@@ -5,6 +5,7 @@ import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.model.dto.LoginDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
+import com.mericakgul.helpapi.model.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,8 +39,9 @@ public class AuthService {
     @Transactional
     public UserResponse signUp(UserRequest userRequest){
         try{
-            userRequest.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
-            return this.userDetailService.save(userRequest);
+            User user = this.dtoMapper.mapModel(userRequest, User.class);
+            user.setPassword((this.bCryptPasswordEncoder.encode(user.getPassword())));
+            return this.userDetailService.save(user);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There occurred an error while signing up. Username or email might already be in use.");
         }

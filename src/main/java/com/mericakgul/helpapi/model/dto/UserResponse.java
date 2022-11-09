@@ -27,5 +27,5 @@ public class UserResponse {
 
     private List<SkillType> skills;
 
-    private List<BusyPeriod> busyPeriods;
+    private List<BusyPeriodDto> busyPeriods;
 }

@@ -57,6 +57,7 @@ public class User implements UserDetails {
     )
     private List<BusyPeriod> busyPeriods = new ArrayList<>();
 
+
     @Column(name = "deleted_date")
     private Date deletedDate = DeletedDateUtil.getDefaultDeletedDate();
 
