@@ -1,7 +1,6 @@
 package com.mericakgul.helpapi.model.dto;
 
 import com.mericakgul.helpapi.enums.SkillType;
-import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
