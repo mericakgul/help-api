@@ -4,7 +4,6 @@ import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.User;
-import com.mericakgul.helpapi.repository.AddressRepository;
 import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,10 +20,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final AddressRepository addressRepository;
-
     private final AddressService addressService;
+    private final BusyPeriodService busyPeriodService;
     private final DtoMapper dtoMapper;
+
     private final ObjectUpdaterHelper objectUpdaterHelper;
     public List<UserResponse> findAll() {
         List<User> userList = this.userRepository.findAll();
@@ -47,9 +46,10 @@ public class UserService {
     public void deleteByUsername(String username) {
         User user = this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this username to delete."));
-        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName(); // to retrieve password getPrincipal()
         if(Objects.equals(username, loggedInUsername)){
             this.addressService.deleteRelatedAddresses(user.getUserUuid());
+            this.busyPeriodService.deleteRelatedBusyPeriods(user.getBusyPeriods());
             user.setDeletedDate(new Date());
             this.userRepository.save(user);
         } else {
