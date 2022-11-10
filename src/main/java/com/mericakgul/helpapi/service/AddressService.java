@@ -37,10 +37,4 @@ public class AddressService {
             });
         }
     }
-
-    public List<AddressDto> saveAll(List<AddressDto> addressesRequest) {
-        List<Address> newAddresses = this.dtoMapper.mapListModel(addressesRequest, Address.class);
-        List<Address> savedAddresses = this.addressRepository.saveAll(newAddresses);
-        return this.dtoMapper.mapListModel(savedAddresses, AddressDto.class);
-    }
 }
