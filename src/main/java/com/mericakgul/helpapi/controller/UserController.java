@@ -29,7 +29,7 @@ public class UserController {
         this.userService.deleteByUsername(username);
         return ResponseEntity.ok().body("The user " + username + " has been deleted along with its relations.");
     }
-    // When we do soft deleting we do not delete the user for real but just not showing it anymore.
+    // When we do soft deleting we do not delete the user for real but just not returning it back to the client by filtering anymore.
     // In this case we can still not create another user with the same username and email
     // because uniqueness is still running for JPA and the user is still in the database.
     // What kinda solution can be applied here?
