@@ -37,4 +37,8 @@ public class AddressService {
             });
         }
     }
+
+    public List<Address> saveAll(List<Address> addressesRequest) {
+        return this.addressRepository.saveAll(addressesRequest);
+    }
 }

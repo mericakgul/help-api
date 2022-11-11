@@ -22,7 +22,4 @@ Second: Create filtering and listing available providers Requests (by using skil
 Third: Request an appointment with the provider user id and put it in its busyPeriods.
  */
 
-// Updating addresses through user entity
-// Updating busy dates through user entity
-// Updating skills through user entity
 // Updating, deleting addresses and busy dates from their own end points

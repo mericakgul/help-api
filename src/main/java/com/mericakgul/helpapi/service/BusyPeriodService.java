@@ -21,20 +21,23 @@ public class BusyPeriodService {
     private final BusyPeriodRepository busyPeriodRepository;
     private final DtoMapper dtoMapper;
 
-    public List<BusyPeriod> saveRelatedBusyPeriods(List<BusyPeriod> busyPeriodsFromUserRequest) {
-        List<BusyPeriod> busyPeriodsToSetUser = new ArrayList<>();
-
-        busyPeriodsFromUserRequest.forEach(busyPeriod -> {
-            Optional<BusyPeriod> busyPeriodOptional = this.busyPeriodRepository
-                    .findBusyPeriodByStartDateAndEndDate(busyPeriod.getStartDate(), busyPeriod.getEndDate());
-            if (busyPeriodOptional.isPresent()) {
-                busyPeriodsToSetUser.add(busyPeriodOptional.get());
-            } else {
-                BusyPeriod savedBusyPeriod = this.busyPeriodRepository.save(busyPeriod);
-                busyPeriodsToSetUser.add(savedBusyPeriod);
-            }
-        });
-        return busyPeriodsToSetUser;
+    public List<BusyPeriod> saveAll(List<BusyPeriod> busyPeriodsFromUserRequest) {
+        if (busyPeriodsFromUserRequest == null) {
+            return null;
+        } else {
+            List<BusyPeriod> busyPeriodsToSetUser = new ArrayList<>();
+            busyPeriodsFromUserRequest.forEach(busyPeriod -> {
+                Optional<BusyPeriod> busyPeriodOptional = this.busyPeriodRepository
+                        .findBusyPeriodByStartDateAndEndDate(busyPeriod.getStartDate(), busyPeriod.getEndDate());
+                if (busyPeriodOptional.isPresent()) {
+                    busyPeriodsToSetUser.add(busyPeriodOptional.get());
+                } else {
+                    BusyPeriod savedBusyPeriod = this.busyPeriodRepository.save(busyPeriod);
+                    busyPeriodsToSetUser.add(savedBusyPeriod);
+                }
+            });
+            return busyPeriodsToSetUser;
+        }
     }
 
     public void deleteRelatedBusyPeriods(List<BusyPeriod> busyPeriodsOfUserToDelete) {

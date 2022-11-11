@@ -1,12 +1,9 @@
 package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
-import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
-import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
-import com.mericakgul.helpapi.repository.BusyPeriodRepository;
 import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +29,7 @@ public class UserDetailService implements UserDetailsService {
     }
 
     public UserResponse save(User user) {
-        List<BusyPeriod> busyPeriods = this.busyPeriodService.saveRelatedBusyPeriods(user.getBusyPeriods());
+        List<BusyPeriod> busyPeriods = this.busyPeriodService.saveAll(user.getBusyPeriods());
         user.setBusyPeriods(busyPeriods);
         User savedUser = this.userRepository.save(user);
         return this.dtoMapper.mapModel(savedUser, UserResponse.class);

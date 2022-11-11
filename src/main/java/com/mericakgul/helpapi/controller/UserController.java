@@ -1,5 +1,6 @@
 package com.mericakgul.helpapi.controller;
 
+import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,11 +36,10 @@ public class UserController {
      What kinda solution can be applied here?*/
 
 
-    // TODO complete update method
-//    @PutMapping("/{userUuid}")
-//    public UserResponse update(@RequestBody UserRequest userRequest, @PathVariable UUID userUuid ) {
-//        return this.userService.update(userUuid, userRequest);
-//    }
+    @PutMapping("/{username}")
+    public UserResponse update(@RequestBody UserRequest userRequest, @PathVariable String username ) {
+        return this.userService.update(username, userRequest);
+    }
 
     // update user details
 
