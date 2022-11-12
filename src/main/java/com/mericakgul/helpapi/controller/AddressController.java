@@ -3,9 +3,7 @@ package com.mericakgul.helpapi.controller;
 import com.mericakgul.helpapi.model.dto.AddressDto;
 import com.mericakgul.helpapi.service.AddressService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,9 @@ public class AddressController {
     @GetMapping
     public List<AddressDto> findAll(){
         return this.addressService.findAll();
+    }
+    @GetMapping("/{username}")
+    public List<AddressDto> findAddressesByUsername(@PathVariable String username){
+        return this.addressService.findAddressesByUsername(username);
     }
 }
