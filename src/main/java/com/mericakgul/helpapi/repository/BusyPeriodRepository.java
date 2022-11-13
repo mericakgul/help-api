@@ -17,7 +17,8 @@ public interface BusyPeriodRepository extends JpaRepository<BusyPeriod, Long> {
 //    @Query(value = "SELECT BP FROM BusyPeriod BP WHERE BP.startDate=:startDate AND BP.endDate=:endDate")
     Optional<BusyPeriod> findBusyPeriodByStartDateAndEndDate(LocalDate startDate, LocalDate endDate);
 
-    @Query("SELECT BP.users FROM BusyPeriod BP WHERE BP.id=:id")
-    List<User> findUsersByBusyPeriodId(@Param("id") Long id);
+//    @Query("SELECT BP.users FROM BusyPeriod BP WHERE BP.id=:id")
+//    List<User> findUsersByBusyPeriodId(@Param("id") Long id);
+//    Instead of this query we could just use busyPeriod.users as in deleteRelatedBusyPeriods method in BusyPeriodService.
 
 }

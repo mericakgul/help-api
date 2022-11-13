@@ -5,6 +5,7 @@ import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
 import com.mericakgul.helpapi.repository.BusyPeriodRepository;
+import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BusyPeriodService {
     private final BusyPeriodRepository busyPeriodRepository;
+    private final UserRepository userRepository;
     private final DtoMapper dtoMapper;
 
     public List<BusyPeriod> saveAll(List<BusyPeriod> busyPeriodsFromUserRequest) {
@@ -42,7 +44,7 @@ public class BusyPeriodService {
 
     public void deleteRelatedBusyPeriods(List<BusyPeriod> busyPeriodsOfUserToDelete) {
         busyPeriodsOfUserToDelete.forEach(busyPeriod -> {
-            List<User> usersThatHasThisBusyPeriod = this.busyPeriodRepository.findUsersByBusyPeriodId(busyPeriod.getId());
+            List<User> usersThatHasThisBusyPeriod = busyPeriod.getUsers();
             if (usersThatHasThisBusyPeriod.size() < 2) {
                 busyPeriod.setDeletedDate(new Date());
             }
@@ -56,5 +58,12 @@ public class BusyPeriodService {
         } else {
             return this.dtoMapper.mapListModel(busyPeriods, BusyPeriodDto.class);
         }
+    }
+
+    public List<BusyPeriodDto> findBusyPeriodsByUsername(String username){
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user with this username"));
+        List<BusyPeriod> busyPeriodsOfUser = user.getBusyPeriods();
+        return this.dtoMapper.mapListModel(busyPeriodsOfUser, BusyPeriodDto.class);
     }
 }
