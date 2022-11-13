@@ -2,6 +2,7 @@ package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
+import com.mericakgul.helpapi.core.helper.UserExistence;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.Address;
@@ -25,6 +26,8 @@ public class UserService {
     private final BusyPeriodService busyPeriodService;
     private final DtoMapper dtoMapper;
     private final ObjectUpdaterHelper objectUpdaterHelper;
+
+    private final UserExistence userExistence;
     public List<UserResponse> findAll() {
         List<User> userList = this.userRepository.findAll();
         return this.dtoMapper.mapListModel(userList, UserResponse.class);
@@ -37,15 +40,13 @@ public class UserService {
 //        }
     }
     public UserResponse findByUsername(String username) {
-        User user = this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this username."));
+        User user = userExistence.checkIfUserExistsAndReturn(username);
         return this.dtoMapper.mapModel(user, UserResponse.class);
     }
 
     @Transactional
     public void deleteByUsername(String username) {
-        User user = this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this username to delete."));
+        User user = userExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName(); // to retrieve password getPrincipal()
         if(Objects.equals(username, loggedInUsername)){
             this.deleteUserRelations(user);

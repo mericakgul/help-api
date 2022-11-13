@@ -22,4 +22,9 @@ public class AddressController {
     public List<AddressDto> findAddressesByUsername(@PathVariable String username){
         return this.addressService.findAddressesByUsername(username);
     }
+
+    @PostMapping("/{username}")
+    public AddressDto saveAddressByUsername(@PathVariable String username, @RequestBody AddressDto addressRequest){
+        return this.addressService.saveAddressByUsername(username, addressRequest);
+    }
 }
