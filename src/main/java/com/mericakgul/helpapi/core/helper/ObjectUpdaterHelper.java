@@ -1,10 +1,11 @@
 package com.mericakgul.helpapi.core.helper;
 
+import com.mericakgul.helpapi.model.dto.AddressDto;
+import com.mericakgul.helpapi.model.entity.Address;
 import com.mericakgul.helpapi.model.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 
 @Component
 @RequiredArgsConstructor
@@ -19,5 +20,13 @@ public class ObjectUpdaterHelper {
         currentUser.setPhoneNumber(upToDateUser.getPhoneNumber());
         currentUser.setDescription(upToDateUser.getDescription());
         currentUser.setSkills(upToDateUser.getSkills());
+    }
+
+    public void updateAddressObjectPrimitiveFields(Address currentAddress, AddressDto upToDateAddress){
+        currentAddress.setStreetName(upToDateAddress.getStreetName());
+        currentAddress.setHouseNumber(upToDateAddress.getHouseNumber());
+        currentAddress.setZipCode(upToDateAddress.getZipCode());
+        currentAddress.setCity(upToDateAddress.getCity());
+        currentAddress.setCountry(upToDateAddress.getCountry());
     }
 }

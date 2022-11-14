@@ -14,4 +14,7 @@ public interface AddressRepository extends JpaRepository<Address, UUID> {
 
     @Query(value = "SELECT A FROM Address A WHERE A.user.userUuid=:userUuid")
     List<Address> findAddressesByUserUuid(@Param("userUuid") UUID userUuid);
+
+    List<Address> findAddressByHouseNumberAndZipCodeAndCityAndCountry
+            (Integer houseNumber, String zipCode, String city, String Country);
 }
