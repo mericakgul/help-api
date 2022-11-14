@@ -32,6 +32,13 @@ public class BusyPeriodController {
         return this.busyPeriodService.saveBusyPeriodByUsername(username, busyPeriodRequest);
     }
 
+    @PutMapping
+    public BusyPeriodDto updateBusyPeriodByFields(@RequestParam(value = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                  @RequestParam(value = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                  @RequestBody BusyPeriodDto upToDateBusyPeriod){
+        return this.busyPeriodService.updateBusyPeriodByFields(startDate, endDate, upToDateBusyPeriod);
+    }
+
     @DeleteMapping
     public ResponseEntity<String> deleteBusyPeriodByFields(@RequestParam(value = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                            @RequestParam(value = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){

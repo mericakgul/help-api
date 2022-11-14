@@ -118,7 +118,7 @@ public class AddressService {
         if(addressOfLoggedInUser.isPresent()){
             return addressOfLoggedInUser.get();
         } else {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You don't have this address saved in your account so you cannot delete or update it.");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "You don't have this address saved in your account so you cannot delete or update it.");
         }
     }
 }

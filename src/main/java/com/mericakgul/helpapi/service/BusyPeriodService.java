@@ -38,6 +38,7 @@ public class BusyPeriodService {
         return this.dtoMapper.mapListModel(busyPeriodsOfUser, BusyPeriodDto.class);
     }
 
+    @Transactional
     public List<BusyPeriod> saveAll(List<BusyPeriod> busyPeriodsFromUserRequest) {
         if (busyPeriodsFromUserRequest == null) {
             return null;
@@ -62,6 +63,20 @@ public class BusyPeriodService {
     }
 
     @Transactional
+    public BusyPeriodDto updateBusyPeriodByFields(LocalDate startDate, LocalDate endDate, BusyPeriodDto upToDateBusyPeriod){
+        BusyPeriod currentBusyPeriod = this.busyPeriodRepository
+                .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
+        if(this.isLoggedInUserAuthorisedToChangeBusyPeriod(currentBusyPeriod)){
+            currentBusyPeriod.setStartDate(upToDateBusyPeriod.getStartDate());
+            currentBusyPeriod.setEndDate(upToDateBusyPeriod.getEndDate());
+            return this.dtoMapper.mapModel(currentBusyPeriod, BusyPeriodDto.class);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This busy period is used by another user, try to add another user or update your account.");
+        }
+    }
+
+    @Transactional
     public void deleteRelatedBusyPeriods(List<BusyPeriod> busyPeriodsOfUserToDelete) {
         busyPeriodsOfUserToDelete.forEach(busyPeriod -> {
             List<User> usersThatHasThisBusyPeriod = busyPeriod.getUsers();
@@ -75,12 +90,10 @@ public class BusyPeriodService {
         BusyPeriod busyPeriodToDelete = this.busyPeriodRepository
                 .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
-        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<User> users = busyPeriodToDelete.getUsers();
-        if(users.size() == 1 && users.get(0).getUsername().equals(loggedInUsername)){
+        if(this.isLoggedInUserAuthorisedToChangeBusyPeriod(busyPeriodToDelete)){
             busyPeriodToDelete.setDeletedDate(new Date());
         } else {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This busy period is used by another user.");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This busy period is used by another user sos it cannot be deleted.");
         }
     }
 
@@ -111,5 +124,11 @@ public class BusyPeriodService {
                             busyPeriod.getEndDate().isEqual(busyPeriodRequest.getEndDate())
                 ).findAny();
         return busyPeriodInUser.isPresent();
+    }
+
+    private boolean isLoggedInUserAuthorisedToChangeBusyPeriod(BusyPeriod busyPeriodToDeleteOrUpdate){
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<User> users = busyPeriodToDeleteOrUpdate.getUsers();
+        return users.size() == 1 && users.get(0).getUsername().equals(loggedInUsername);
     }
 }
