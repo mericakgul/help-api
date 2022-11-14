@@ -6,7 +6,6 @@ import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
 import com.mericakgul.helpapi.repository.BusyPeriodRepository;
-import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -50,7 +50,6 @@ public class BusyPeriodService {
         }
     }
 
-
     @Transactional
     public BusyPeriodDto saveBusyPeriodByUsername(String username, BusyPeriodDto busyPeriodRequest) {
         User user = userExistence.checkIfUserExistsAndReturn(username);
@@ -70,6 +69,19 @@ public class BusyPeriodService {
                 busyPeriod.setDeletedDate(new Date());
             }
         });
+    }
+    @Transactional
+    public void deleteBusyPeriodByFields(LocalDate startDate, LocalDate endDate){
+        BusyPeriod busyPeriodToDelete = this.busyPeriodRepository
+                .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<User> users = busyPeriodToDelete.getUsers();
+        if(users.size() == 1 && users.get(0).getUsername().equals(loggedInUsername)){
+            busyPeriodToDelete.setDeletedDate(new Date());
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This busy period is used by another user.");
+        }
     }
 
     private BusyPeriodDto assignBusyPeriodToUser(User user, BusyPeriodDto busyPeriodRequest){
