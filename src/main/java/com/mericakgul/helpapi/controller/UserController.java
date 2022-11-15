@@ -1,5 +1,6 @@
 package com.mericakgul.helpapi.controller;
 
+import com.mericakgul.helpapi.model.dto.ServiceProviderFinderDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.service.UserService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,14 +21,18 @@ public class UserController {
     public List<UserResponse> findAllUsers() {
         return this.userService.findAll();
     }
-
     @GetMapping("/{username}")
     public UserResponse findByUsername(@PathVariable String username) {
         return this.userService.findByUsername(username);
     }
 
+    @PostMapping("/serviceprovider")
+    public List<UserResponse> findServiceProvidersBySkillAndBusyPeriod(@Valid @RequestBody ServiceProviderFinderDto serviceProviderFinderDto){
+        return this.userService.findServiceProvidersBySkillAndBusyPeriod(serviceProviderFinderDto);
+    }
+
     @PutMapping("/{username}")
-    public UserResponse update(@RequestBody UserRequest userRequest, @PathVariable String username ) {
+    public UserResponse update(@Valid @RequestBody UserRequest userRequest, @PathVariable String username ) {
         return this.userService.update(username, userRequest);
     }
 

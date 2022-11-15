@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,14 +29,14 @@ public class BusyPeriodController {
     }
 
     @PostMapping("/{username}")
-    public BusyPeriodDto saveBusyPeriodByUsername(@PathVariable String username, @RequestBody BusyPeriodDto busyPeriodRequest){
+    public BusyPeriodDto saveBusyPeriodByUsername(@PathVariable String username, @Valid @RequestBody BusyPeriodDto busyPeriodRequest){
         return this.busyPeriodService.saveBusyPeriodByUsername(username, busyPeriodRequest);
     }
 
     @PutMapping
     public BusyPeriodDto updateBusyPeriodByFields(@RequestParam(value = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                   @RequestParam(value = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                                  @RequestBody BusyPeriodDto upToDateBusyPeriod){
+                                                  @Valid @RequestBody BusyPeriodDto upToDateBusyPeriod){
         return this.busyPeriodService.updateBusyPeriodByFields(startDate, endDate, upToDateBusyPeriod);
     }
 

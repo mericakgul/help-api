@@ -20,4 +20,6 @@ public enum SkillType {
 /*
 - Create filtering and listing available providers Requests (by using skill and dates)
 - Request an appointment with the provider username and put it in its busyPeriods.
+//user'i kaydederken birden fazla busy period varsa o busy periodlar overlap ediyor mu kontrol et
+// start date enddate'ten sonra olamaz, gecmiste olamaz 1 yildan daha ileri bir zamanda olamaz.
  */

@@ -3,6 +3,9 @@ package com.mericakgul.helpapi.service;
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
 import com.mericakgul.helpapi.core.helper.UserExistence;
+import com.mericakgul.helpapi.core.util.CompareDate;
+import com.mericakgul.helpapi.enums.SkillType;
+import com.mericakgul.helpapi.model.dto.ServiceProviderFinderDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.Address;
@@ -26,8 +29,8 @@ public class UserService {
     private final BusyPeriodService busyPeriodService;
     private final DtoMapper dtoMapper;
     private final ObjectUpdaterHelper objectUpdaterHelper;
-
     private final UserExistence userExistence;
+
     public List<UserResponse> findAll() {
         List<User> userList = this.userRepository.findAll();
         return this.dtoMapper.mapListModel(userList, UserResponse.class);
@@ -39,16 +42,28 @@ public class UserService {
 //            return this.dtoMapper.mapListModel(userList, UserResponse.class);
 //        }
     }
+
     public UserResponse findByUsername(String username) {
         User user = userExistence.checkIfUserExistsAndReturn(username);
         return this.dtoMapper.mapModel(user, UserResponse.class);
+    }
+
+    public List<UserResponse> findServiceProvidersBySkillAndBusyPeriod(ServiceProviderFinderDto serviceProviderFinderDto) {
+        List<User> allUsers = this.userRepository.findAll();
+        List<User> usersWhoHasTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
+        List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHasTheSkill, serviceProviderFinderDto);
+        if(usersWhoAreAvailable.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available for the criteria.");
+        } else {
+            return this.dtoMapper.mapListModel(usersWhoAreAvailable, UserResponse.class);
+        }
     }
 
     @Transactional
     public UserResponse update(String username, UserRequest userRequest) {
         Optional<User> optionalUser = this.userRepository.findByUsername(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (optionalUser.isPresent() && Objects.equals(username, loggedInUsername)){
+        if (optionalUser.isPresent() && Objects.equals(username, loggedInUsername)) {
             User currentUser = optionalUser.get();
             this.updateUserWithRelations(currentUser, userRequest);
             return this.dtoMapper.mapModel(currentUser, UserResponse.class);
@@ -61,7 +76,7 @@ public class UserService {
     public void deleteByUsername(String username) {
         User user = userExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName(); // to retrieve password getPrincipal()
-        if(Objects.equals(username, loggedInUsername)){
+        if (Objects.equals(username, loggedInUsername)) {
             this.deleteUserRelations(user);
             user.setDeletedDate(new Date());
             this.userRepository.save(user);
@@ -71,12 +86,12 @@ public class UserService {
         }
     }
 
-    private void deleteUserRelations(User user){
+    private void deleteUserRelations(User user) {
         this.addressService.deleteRelatedAddresses(user.getUserUuid());
         this.busyPeriodService.deleteRelatedBusyPeriods(user.getBusyPeriods());
     }
 
-    private void updateUserWithRelations(User currentUser, UserRequest userRequest){
+    private void updateUserWithRelations(User currentUser, UserRequest userRequest) {
         User upToDateUser = this.dtoMapper.mapModel(userRequest, User.class);
         this.objectUpdaterHelper.updateUserObjectPrimitiveFields(currentUser, upToDateUser);
         this.deleteUserRelations(currentUser);
@@ -89,5 +104,23 @@ public class UserService {
         So this is not the best for performance wise because there will be extra and redundant processes
         in case there is no update in addresses and busy periods while updating a user.
          */
+    }
+
+    private List<User> filterUsersBySkill(List<User> users, SkillType skill) {
+        return users.stream()
+                .filter(user -> user.getSkills().contains(skill))
+                .toList();
+
+    }
+    private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto){
+        return users.stream()
+                .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), serviceProviderFinderDto))
+                .toList();
+    }
+    private boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, ServiceProviderFinderDto serviceProviderFinderDto){
+        Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
+                .filter(busyPeriod -> CompareDate.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), serviceProviderFinderDto.getStartDate(), serviceProviderFinderDto.getEndDate()))
+                .findFirst();
+        return overlapBusyPeriod.isPresent();
     }
 }
