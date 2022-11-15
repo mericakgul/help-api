@@ -19,5 +19,5 @@ public enum SkillType {
 // TODO
 /*
 - Create filtering and listing available providers Requests (by using skill and dates)
-- Request an appointment with the provider user id and put it in its busyPeriods.
+- Request an appointment with the provider username and put it in its busyPeriods.
  */
