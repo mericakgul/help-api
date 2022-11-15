@@ -53,7 +53,7 @@ public class UserService {
         List<User> usersWhoHasTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
         List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHasTheSkill, serviceProviderFinderDto);
         if(usersWhoAreAvailable.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available for the criteria.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available with this skill for these dates.");
         } else {
             return this.dtoMapper.mapListModel(usersWhoAreAvailable, UserResponse.class);
         }
