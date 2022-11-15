@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -118,8 +119,10 @@ public class UserService {
                 .toList();
     }
     private boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, ServiceProviderFinderDto serviceProviderFinderDto){
+        LocalDate requestedStartDate = serviceProviderFinderDto.getRequestedPeriod().getStartDate();
+        LocalDate requestedEndDate = serviceProviderFinderDto.getRequestedPeriod().getEndDate();
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
-                .filter(busyPeriod -> CompareDate.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), serviceProviderFinderDto.getStartDate(), serviceProviderFinderDto.getEndDate()))
+                .filter(busyPeriod -> CompareDate.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
                 .findFirst();
         return overlapBusyPeriod.isPresent();
     }

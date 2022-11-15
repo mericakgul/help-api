@@ -14,7 +14,5 @@ public class ServiceProviderFinderDto {
 
     private SkillType skill;
 
-    private LocalDate startDate;
-
-    private LocalDate endDate;
+    private BusyPeriodDto requestedPeriod;
 }
