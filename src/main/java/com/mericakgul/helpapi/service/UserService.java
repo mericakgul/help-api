@@ -45,6 +45,19 @@ public class UserService {
     }
 
     @Transactional
+    public UserResponse update(String username, UserRequest userRequest) {
+        Optional<User> optionalUser = this.userRepository.findByUsername(username);
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (optionalUser.isPresent() && Objects.equals(username, loggedInUsername)){
+            User currentUser = optionalUser.get();
+            this.updateUserWithRelations(currentUser, userRequest);
+            return this.dtoMapper.mapModel(currentUser, UserResponse.class);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this id to update or you are not authorized to update this user.");
+        }
+    }
+
+    @Transactional
     public void deleteByUsername(String username) {
         User user = userExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName(); // to retrieve password getPrincipal()
@@ -61,19 +74,6 @@ public class UserService {
     private void deleteUserRelations(User user){
         this.addressService.deleteRelatedAddresses(user.getUserUuid());
         this.busyPeriodService.deleteRelatedBusyPeriods(user.getBusyPeriods());
-    }
-
-    @Transactional
-    public UserResponse update(String username, UserRequest userRequest) {
-        Optional<User> optionalUser = this.userRepository.findByUsername(username);
-        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (optionalUser.isPresent() && Objects.equals(username, loggedInUsername)){
-            User currentUser = optionalUser.get();
-            this.updateUserWithRelations(currentUser, userRequest);
-            return this.dtoMapper.mapModel(currentUser, UserResponse.class);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this id to update or you are not authorized to update this user.");
-        }
     }
 
     private void updateUserWithRelations(User currentUser, UserRequest userRequest){

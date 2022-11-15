@@ -25,6 +25,11 @@ public class UserController {
         return this.userService.findByUsername(username);
     }
 
+    @PutMapping("/{username}")
+    public UserResponse update(@RequestBody UserRequest userRequest, @PathVariable String username ) {
+        return this.userService.update(username, userRequest);
+    }
+
     @DeleteMapping("/{username}")
     public ResponseEntity<String> deleteByUsername(@PathVariable String username) {
         this.userService.deleteByUsername(username);
@@ -34,15 +39,4 @@ public class UserController {
      In this case we can still not create another user with the same username and email
      because uniqueness is still running for JPA and the user is still in the database.
      What kinda solution can be applied here?*/
-
-
-    @PutMapping("/{username}")
-    public UserResponse update(@RequestBody UserRequest userRequest, @PathVariable String username ) {
-        return this.userService.update(username, userRequest);
-    }
-
-    // update user details
-
-    // find users by filter
-
 }
