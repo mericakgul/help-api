@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "bd541a2e-71ba-4e48-b6b7-d87f8f5f6c38",
+		"name": "Help-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5503005"
+	},
+	"item": [
+		{
+			"name": "auth and user",
+			"item": [
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"username\": \"mericakgul1\",\n    \"email\": \"mericakgul1@gmail.com\",\n    \"password\": \"Meric123\",\n    \"fullName\": \"Meric Akgul1\",\n    \"phoneNumber\": \"111111\",\n    \"description\": \"lala1\",\n    \"addresses\":[\n        {\n            \"streetName\": \"z\",\n            \"houseNumber\": \"9\",\n            \"zipCode\": \"7\",\n            \"city\": \"y\",\n            \"country\": \"i\"\n        },\n        {\n            \"streetName\": \"x\",\n            \"houseNumber\": \"97\",\n            \"zipCode\": \"56\",\n            \"city\": \"w\",\n            \"country\": \"p\"\n        }\n    ],\n    \"skills\": [\"CLEANER\", \"MECHANIC\"],\n    \"busyPeriods\": [\n        {\n            \"startDate\": \"1111-12-19\",\n            \"endDate\": \"2222-03-03\"\n        },\n        {\n            \"startDate\": \"3333-12-19\",\n            \"endDate\": \"4444-03-03\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mericakgul2\",\n    \"password\": \"Meric123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user findAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMSIsImlhdCI6MTY2ODQ1ODYyMCwiZXhwIjoxNjY4NDU4OTIwfQ.UAvPjsEEeCXDb57KTvpi9LqMj2QgcfjMBLSMgmKWuzw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/{username} findByUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4MzY1ODg3LCJleHAiOjE2NjgzNjYxODd9.DVFD8gYUFfgyZTDOEWxuyx9hdk-wkT92kArLlAXJvII",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/{username} update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4MzMwMjM1LCJleHAiOjE2NjgzMzA1MzV9.iZ1ggTs64jMna6WwvPdgD-mMLsSNmFhYOmqH0X9td9w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"username\": \"mericakgul\",\n        \"email\": \"mericakgul@gmail.com\",\n        \"fullName\": \"Meric Akgul1\",\n        \"password\": \"Meric123\",\n        \"phoneNumber\": \"111111\",\n        \"description\": \"lala1\",\n        \"addresses\": [\n            {\n                \"streetName\": \"aaaaaaaaaaaa\",\n                \"houseNumber\": 2,\n                \"zipCode\": \"5\",\n                \"city\": \"ddddddddddddddddd\",\n                \"country\": \"ooooooooooooooooo\"\n            },\n            {\n                \"streetName\": \"bbbbbbbbbbbbbbb\",\n                \"houseNumber\": 8,\n                \"zipCode\": \"1\",\n                \"city\": \"eeeeeeeeeeeeeee\",\n                \"country\": \"uuuuuuuuuuuu\"\n            }\n        ],\n        \"skills\": [\n            \"CLEANER\",\n            \"MECHANIC\"\n        ],\n        \"busyPeriods\": [\n            {\n                \"startDate\": \"1111-12-19\",\n                \"endDate\": \"5432-03-03\"\n            },\n            {\n                \"startDate\": \"3333-12-19\",\n                \"endDate\": \"4444-03-03\"\n            }\n        ]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/{username} deleteByUsername",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4MzcyNDA0LCJleHAiOjE2NjgzNzI3MDR9.e62UnWXflxy-qY5RLErRYmmAd5XIpfuUfe0VF2psxwg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "address",
+			"item": [
+				{
+					"name": "/address findAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQzNzg1OSwiZXhwIjoxNjY4NDM4MTU5fQ.0bOliVFXyq5G1w4CrsrPvD8hcUntbh9D4H02LAPgPhg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/address/{username} findAddressesByUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODM3MzA5NCwiZXhwIjoxNjY4MzczMzk0fQ.-5d2NKv044mR38__5gp1vAsWPsKI34qdmQzHROHTlos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/address/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/address/{username} add address to user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4MjgwLCJleHAiOjE2Njg0Mzg1ODB9.Na6-ZSDyZeMAdCwKRwBiZH8-zHeMvA5k5nPS7U-pQ18",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"streetName\": \"xxx\",\n    \"houseNumber\": 5430,\n    \"zipCode\": \"9009\",\n    \"city\": \"den haag\",\n    \"country\": \"holland\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/address/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/address?houseNumber={}&zipCode={}&city={}&country={}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4MDQ3LCJleHAiOjE2Njg0MzgzNDd9.T_BfI1pkU2Kw0V3DrTWpk4GEipWnarQVuVuJn_J117M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"streetName\": \"yyytytyt\",\n    \"houseNumber\": \"4444\",\n    \"zipCode\": \"8888\",\n    \"city\": \"den haag lalala\",\n    \"country\": \"holland lala\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/address?houseNumber=8&zipCode=1&city=e&country=u",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address"
+							],
+							"query": [
+								{
+									"key": "houseNumber",
+									"value": "8"
+								},
+								{
+									"key": "zipCode",
+									"value": "1"
+								},
+								{
+									"key": "city",
+									"value": "e"
+								},
+								{
+									"key": "country",
+									"value": "u"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/address?houseNumber={}&zipCode={}&city={}&country={}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4NDUwLCJleHAiOjE2Njg0Mzg3NTB9.TrD2SZkUf0eRPEiNnh_Np-ndHyT5JgPz5UB88ohQaEA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/address?houseNumber=5430&zipCode=9009&city=den haag&country=holland",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address"
+							],
+							"query": [
+								{
+									"key": "houseNumber",
+									"value": "5430"
+								},
+								{
+									"key": "zipCode",
+									"value": "9009"
+								},
+								{
+									"key": "city",
+									"value": "den haag"
+								},
+								{
+									"key": "country",
+									"value": "holland"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "busy period",
+			"item": [
+				{
+					"name": "/busyperiod findAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1MDkxNiwiZXhwIjoxNjY4NDUxMjE2fQ.s9Qbo1gmHnfiDUX0Neh6gDGUo-mUUPJ_3xyWDAGyH6M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/busyperiod",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"busyperiod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/busyperiod/{username} findBusyPeriodsByUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODM3MzA5NCwiZXhwIjoxNjY4MzczMzk0fQ.-5d2NKv044mR38__5gp1vAsWPsKI34qdmQzHROHTlos",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/busyperiod/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"busyperiod",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/busyperiod/{username} add busy period to user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1ODkxOCwiZXhwIjoxNjY4NDU5MjE4fQ.WifGlVQaOx--OEzRR9HC049yAIqxpkNnDYZN0NbLeYc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"1111-11-11\",\n    \"endDate\": \"1111-11-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/busyperiod/mericakgul2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"busyperiod",
+								"mericakgul2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/busyperiod?startDate={}&endDate={}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMSIsImlhdCI6MTY2ODQ1ODc4MiwiZXhwIjoxNjY4NDU5MDgyfQ.GwDrbDz7zDiCpJTX01oLKReZfHtUP4QecsiezYJ0Ri4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"1111-11-11\",\n    \"endDate\": \"1111-11-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/busyperiod?startDate=1111-12-19&endDate=2222-03-03",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"busyperiod"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "1111-12-19"
+								},
+								{
+									"key": "endDate",
+									"value": "2222-03-03"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/busyperiod?startDate={}&endDate={}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1ODk4NiwiZXhwIjoxNjY4NDU5Mjg2fQ.yfsuAJusJtydUECwZBIPekSUcUeYH6ka9j4rbl7zXTk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/busyperiod?startDate=1111-11-11&endDate=1111-11-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"busyperiod"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "1111-11-11"
+								},
+								{
+									"key": "endDate",
+									"value": "1111-11-11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userFinder",
+			"item": [
+				{
+					"name": "/user/serviceprovider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpYyIsImlhdCI6MTY2ODUyNjgxMCwiZXhwIjoxNjY4NTI3MTEwfQ.YZJ8bS-G5uOf2dGQmr_o1CjyrlWIfEzxr9cCOAZD4GI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"ELECTRICIAN\",\n    \"startDate\": \"2023-02-04\",\n    \"endDate\": \"2023-02-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/serviceprovider",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"serviceprovider"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
