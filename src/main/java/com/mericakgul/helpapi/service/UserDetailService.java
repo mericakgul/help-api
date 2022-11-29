@@ -31,6 +31,7 @@ public class UserDetailService implements UserDetailsService {
     public UserResponse save(User user) {
         List<BusyPeriod> busyPeriods = this.busyPeriodService.saveAll(user.getBusyPeriods());
         user.setBusyPeriods(busyPeriods);
+        // We do not need to save addresses explicitly since we added cascade to addresses property of User entity.
         User savedUser = this.userRepository.save(user);
         return this.dtoMapper.mapModel(savedUser, UserResponse.class);
     }

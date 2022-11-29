@@ -43,7 +43,7 @@ public class AuthService {
             user.setPassword((this.bCryptPasswordEncoder.encode(user.getPassword())));
             return this.userDetailService.save(user);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There occurred an error while signing up. Username or email might already be in use.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 }

@@ -53,8 +53,8 @@ public class AddressService {
 /*            Address savedAddress = this.addressRepository.save(addressToSave);
 
             Note: We do not have to save address because we added cascade to addresses property of User entity.
-            And because user variable above is a persist object, any change would be reflected to DB.
-            Therefore, when we add an address to a user it will be automatically reflected to DB and because w have cascade,
+            And because user variable above is a persistent object any change would be reflected to DB.
+            Therefore, when we add an address to a user it will be automatically reflected to DB and because we have cascade
            the new address would be saved to Address table automatically.
 */
             user.getAddresses().add(addressToSave);
@@ -69,7 +69,7 @@ public class AddressService {
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         Address currentAddress = this.findAddressByFieldsAndUsername(houseNumber, zipCode, city, Country, loggedInUsername);
         this.objectUpdaterHelper.updateAddressObjectPrimitiveFields(currentAddress, upToDateAddress);
-        //No need to save the currentAddress to repo since it is doing it automatically because currentAddress is an object fetched from repo..
+        //No need to save the currentAddress to repo since it is doing it automatically because currentAddress is an object fetched from repo.
         return this.dtoMapper.mapModel(currentAddress, AddressDto.class);
     }
 
