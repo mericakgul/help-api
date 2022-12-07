@@ -122,7 +122,9 @@ public class UserService {
         LocalDate requestedStartDate = serviceProviderFinderDto.getRequestedPeriod().getStartDate();
         LocalDate requestedEndDate = serviceProviderFinderDto.getRequestedPeriod().getEndDate();
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
-                .filter(busyPeriod -> CompareDates.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
+                .filter(busyPeriod ->
+                    CompareDates.areDatesValid(requestedStartDate, requestedEndDate) &&
+                    CompareDates.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
                 .findFirst();
         return overlapBusyPeriod.isPresent();
     }

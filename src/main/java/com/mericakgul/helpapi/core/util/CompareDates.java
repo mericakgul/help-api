@@ -20,7 +20,8 @@ public class CompareDates {
     }
 
     public static boolean areDatesValid(LocalDate startDate, LocalDate endDate){
-        //Using this method makes the code a bit unreadable. Would be nice if there is a shorter version of adding date validation, sth like creating own annotation validation like @NotNull.
+        // Using this method makes the code a bit unreadable. Would be nice if there is a shorter version of adding date validation, sth like creating own annotation validation like @NotNull but class level for busyPeriodDto.
+        // Whenever we need busyPeriodDto we need to do this validation individually so not the best practice, but code repeating.
         LocalDate today = LocalDate.now();
 
         if(startDate.isBefore(today)){
