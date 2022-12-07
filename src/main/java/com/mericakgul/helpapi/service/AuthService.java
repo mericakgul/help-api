@@ -39,9 +39,8 @@ public class AuthService {
     @Transactional
     public UserResponse signUp(UserRequest userRequest){
         try{
-            User user = this.dtoMapper.mapModel(userRequest, User.class);
-            user.setPassword((this.bCryptPasswordEncoder.encode(user.getPassword())));
-            return this.userDetailService.save(user);
+            userRequest.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
+            return this.userDetailService.save(userRequest);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

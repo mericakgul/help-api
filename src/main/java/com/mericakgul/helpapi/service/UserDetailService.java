@@ -1,6 +1,7 @@
 package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
+import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
@@ -28,7 +29,8 @@ public class UserDetailService implements UserDetailsService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no user found with this username."));
     }
 
-    public UserResponse save(User user) {
+    public UserResponse save(UserRequest userRequest) {
+        User user = this.dtoMapper.mapModel(userRequest, User.class);
         List<BusyPeriod> busyPeriods = this.busyPeriodService.saveAll(user.getBusyPeriods());
         user.setBusyPeriods(busyPeriods);
         // We do not need to save addresses explicitly since we added cascade to addresses property of User entity.
