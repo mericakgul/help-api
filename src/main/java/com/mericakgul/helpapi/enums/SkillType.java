@@ -19,5 +19,4 @@ public enum SkillType {
 // TODO
 /*
 - Request an appointment with the provider username and put it in its busyPeriods.
-// start date enddate'ten sonra olamaz, gecmiste olamaz 1 yildan daha ileri bir zamanda olamaz.
  */

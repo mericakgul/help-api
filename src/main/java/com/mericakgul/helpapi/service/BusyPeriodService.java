@@ -2,7 +2,7 @@ package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.UserExistence;
-import com.mericakgul.helpapi.core.util.CompareDate;
+import com.mericakgul.helpapi.core.util.CompareDates;
 import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
 import com.mericakgul.helpapi.model.entity.User;
@@ -46,7 +46,8 @@ public class BusyPeriodService {
         } else {
             List<BusyPeriod> busyPeriodsToSetUser = new ArrayList<>();
             busyPeriodsFromUserRequest.forEach(busyPeriod -> {
-                if (!this.areBusyPeriodsOverlap(busyPeriodsToSetUser, busyPeriod)) {
+                if (CompareDates.areDatesValid(busyPeriod.getStartDate(), busyPeriod.getEndDate()) &&
+                        !this.areBusyPeriodsOverlap(busyPeriodsToSetUser, busyPeriod)) {
                     busyPeriodsToSetUser.add(checkIfBusyPeriodAlreadyExistsAndReturn(busyPeriod));
                 }
             });
@@ -58,7 +59,8 @@ public class BusyPeriodService {
     public BusyPeriodDto saveBusyPeriodByUsername(String username, BusyPeriodDto busyPeriodRequest) {
         User user = userExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (Objects.equals(loggedInUsername, username)) {
+        if (Objects.equals(loggedInUsername, username) &&
+                CompareDates.areDatesValid(busyPeriodRequest.getStartDate(), busyPeriodRequest.getEndDate())) {
             BusyPeriod busyPeriodToAssignToUser = this.dtoMapper.mapModel(busyPeriodRequest, BusyPeriod.class);
             return this.assignBusyPeriodToUser(user, busyPeriodToAssignToUser);
         } else {
@@ -71,7 +73,8 @@ public class BusyPeriodService {
         BusyPeriod currentBusyPeriod = this.busyPeriodRepository
                 .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
-        if (this.isLoggedInUserAuthorisedToChangeBusyPeriod(currentBusyPeriod)) {
+        if (this.isLoggedInUserAuthorisedToChangeBusyPeriod(currentBusyPeriod) &&
+                CompareDates.areDatesValid(upToDateBusyPeriod.getStartDate(), upToDateBusyPeriod.getEndDate())) {
             currentBusyPeriod.setStartDate(upToDateBusyPeriod.getStartDate());
             currentBusyPeriod.setEndDate(upToDateBusyPeriod.getEndDate());
             return this.dtoMapper.mapModel(currentBusyPeriod, BusyPeriodDto.class);
@@ -98,7 +101,7 @@ public class BusyPeriodService {
         if (this.isLoggedInUserAuthorisedToChangeBusyPeriod(busyPeriodToDelete)) {
             busyPeriodToDelete.setDeletedDate(new Date());
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This busy period is used by another user sos it cannot be deleted.");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This busy period is used by another user so it cannot be deleted.");
         }
     }
 
@@ -141,7 +144,7 @@ public class BusyPeriodService {
     private boolean areBusyPeriodsOverlap(List<BusyPeriod> busyPeriodsOfUser, BusyPeriod newBusyPeriod) {
         Optional<BusyPeriod> overlappedBusyPeriod = busyPeriodsOfUser.stream()
                 .filter(busyPeriodOfUser ->
-                        CompareDate.isThereOverlapBetweenDates(busyPeriodOfUser.getStartDate(), busyPeriodOfUser.getEndDate(), newBusyPeriod.getStartDate(), newBusyPeriod.getEndDate()))
+                        CompareDates.isThereOverlapBetweenDates(busyPeriodOfUser.getStartDate(), busyPeriodOfUser.getEndDate(), newBusyPeriod.getStartDate(), newBusyPeriod.getEndDate()))
                 .findFirst();
         if (overlappedBusyPeriod.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Busy periods are overlapped.");

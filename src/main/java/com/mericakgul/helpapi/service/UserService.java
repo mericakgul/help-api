@@ -3,7 +3,7 @@ package com.mericakgul.helpapi.service;
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
 import com.mericakgul.helpapi.core.helper.UserExistence;
-import com.mericakgul.helpapi.core.util.CompareDate;
+import com.mericakgul.helpapi.core.util.CompareDates;
 import com.mericakgul.helpapi.enums.SkillType;
 import com.mericakgul.helpapi.model.dto.ServiceProviderFinderDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
@@ -122,7 +122,7 @@ public class UserService {
         LocalDate requestedStartDate = serviceProviderFinderDto.getRequestedPeriod().getStartDate();
         LocalDate requestedEndDate = serviceProviderFinderDto.getRequestedPeriod().getEndDate();
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
-                .filter(busyPeriod -> CompareDate.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
+                .filter(busyPeriod -> CompareDates.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
                 .findFirst();
         return overlapBusyPeriod.isPresent();
     }
