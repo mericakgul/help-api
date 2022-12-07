@@ -101,16 +101,16 @@ public class AddressService {
 
     private Address findAddressByFieldsAndUsername(Integer houseNumber, String zipCode, String city, String Country, String loggedInUsername) {
         List<Address> addresses = this.addressRepository
-                .findAddressByHouseNumberAndZipCodeAndCityAndCountry(houseNumber, zipCode, city, Country);
+                .findAddressesByHouseNumberAndZipCodeAndCityAndCountry(houseNumber, zipCode, city, Country);
 
         Optional<Address> addressOfLoggedInUser = addresses.stream()
                 .filter(address -> address.getUser().getUsername().equals(loggedInUsername))
                 .findAny();
         /*
         While saving addresses we are not checking if the same one already exist or not but just saving the address
-        with the same fields but different id's. In this case two different accounts may save the same address to their account but
-        these two same addresses are kept with different id's. When it comes to delete or update an address by the
-        fields (houseNumber, zipCode, city and country) we might fetch more than one address because of the reason explained above, so
+        with the same fields but different id's. In this case two different accounts may save the same address in their account but
+        these two same addresses are kept with different id's. Therefore, when it comes to delete or update an address by the
+        fields (houseNumber, zipCode, city and country) we might fetch more than one address, so
         we are also filtering these addresses by username. Only downside of this way is that a user is also allowed to save two same
         addresses in their account. But in this case; if the user wants to update or delete an address then the first one is graped,
         and we don't get any error.
