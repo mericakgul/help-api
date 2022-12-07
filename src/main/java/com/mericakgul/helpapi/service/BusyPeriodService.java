@@ -103,11 +103,10 @@ public class BusyPeriodService {
     }
 
     private BusyPeriodDto assignBusyPeriodToUser(User user, BusyPeriod busyPeriodComingFromRequest) {
-        boolean doesUserHaveTheBusyPeriod = this.doesUserAlreadyHaveTheBusyPeriod(user, busyPeriodComingFromRequest);
+        boolean doesUserHaveTheSameBusyPeriod = this.doesUserAlreadyHaveTheBusyPeriod(user, busyPeriodComingFromRequest);
         boolean isThereOverlap = this.areBusyPeriodsOverlap(user.getBusyPeriods(), busyPeriodComingFromRequest);
-        BusyPeriod busyPeriod = this.dtoMapper.mapModel(busyPeriodComingFromRequest, BusyPeriod.class);
-        BusyPeriod busyPeriodToSetUser = this.checkIfBusyPeriodAlreadyExistsAndReturn(busyPeriod);
-        if (!doesUserHaveTheBusyPeriod && !isThereOverlap) {
+        BusyPeriod busyPeriodToSetUser = this.checkIfBusyPeriodAlreadyExistsAndReturn(busyPeriodComingFromRequest);
+        if (!doesUserHaveTheSameBusyPeriod && !isThereOverlap) {
             user.getBusyPeriods().add(busyPeriodToSetUser);
         }
         return this.dtoMapper.mapModel(busyPeriodToSetUser, BusyPeriodDto.class);
