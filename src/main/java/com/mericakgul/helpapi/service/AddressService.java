@@ -103,7 +103,7 @@ public class AddressService {
         List<Address> addresses = this.addressRepository
                 .findAddressesByHouseNumberAndZipCodeAndCityAndCountry(houseNumber, zipCode, city, Country);
 
-        Optional<Address> addressOfLoggedInUser = addresses.stream()
+        Optional<Address> optionalFoundAddressPossessedByLoggedInUser = addresses.stream()
                 .filter(address -> address.getUser().getUsername().equals(loggedInUsername))
                 .findAny();
         /*
@@ -115,8 +115,8 @@ public class AddressService {
         addresses in their account. But in this case; if the user wants to update or delete an address then the first one is graped,
         and we don't get any error.
          */
-        if(addressOfLoggedInUser.isPresent()){
-            return addressOfLoggedInUser.get();
+        if(optionalFoundAddressPossessedByLoggedInUser.isPresent()){
+            return optionalFoundAddressPossessedByLoggedInUser.get();
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "You don't have this address saved in your account so you cannot delete or update it.");
         }
