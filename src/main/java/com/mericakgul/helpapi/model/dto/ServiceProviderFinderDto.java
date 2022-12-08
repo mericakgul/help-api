@@ -5,14 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class ServiceProviderFinderDto {
 
+    @NotNull
     private SkillType skill;
 
+    @NotNull
     private BusyPeriodDto requestedPeriod;
 }
