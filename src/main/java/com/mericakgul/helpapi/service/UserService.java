@@ -110,7 +110,6 @@ public class UserService {
         return users.stream()
                 .filter(user -> user.getSkills().contains(skill))
                 .toList();
-
     }
     private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto){
         return users.stream()
