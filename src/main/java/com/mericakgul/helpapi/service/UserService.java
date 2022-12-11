@@ -62,12 +62,11 @@ public class UserService {
 
     @Transactional
     public UserResponse update(String username, UserRequest userRequest) {
-        Optional<User> optionalUser = this.userRepository.findByUsername(username);
+        User user = userExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (optionalUser.isPresent() && Objects.equals(username, loggedInUsername)) {
-            User currentUser = optionalUser.get();
-            this.updateUserWithRelations(currentUser, userRequest);
-            return this.dtoMapper.mapModel(currentUser, UserResponse.class);
+        if (Objects.equals(username, loggedInUsername)) {
+            this.updateUserWithRelations(user, userRequest);
+            return this.dtoMapper.mapModel(user, UserResponse.class);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no user found with this id to update or you are not authorized to update this user.");
         }
