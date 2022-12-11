@@ -51,8 +51,8 @@ public class UserService {
 
     public List<UserResponse> findServiceProvidersBySkillAndBusyPeriod(ServiceProviderFinderDto serviceProviderFinderDto) {
         List<User> allUsers = this.userRepository.findAll();
-        List<User> usersWhoHasTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
-        List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHasTheSkill, serviceProviderFinderDto);
+        List<User> usersWhoHaveTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
+        List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHaveTheSkill, serviceProviderFinderDto);
         if(usersWhoAreAvailable.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available with this skill for these dates.");
         } else {
