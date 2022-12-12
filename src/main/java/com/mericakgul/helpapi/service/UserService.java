@@ -112,13 +112,13 @@ public class UserService {
                 .toList();
     }
     private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto){
-        return users.stream()
-                .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), serviceProviderFinderDto))
-                .toList();
-    }
-    private boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, ServiceProviderFinderDto serviceProviderFinderDto){
         LocalDate requestedStartDate = serviceProviderFinderDto.getStartDate();
         LocalDate requestedEndDate = serviceProviderFinderDto.getEndDate();
+        return users.stream()
+                .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), requestedStartDate, requestedEndDate))
+                .toList();
+    }
+    public boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, LocalDate requestedStartDate, LocalDate requestedEndDate){
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
                 .filter(busyPeriod ->
                     CompareDates.areDatesValid(requestedStartDate, requestedEndDate) &&

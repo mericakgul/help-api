@@ -18,5 +18,6 @@ public enum SkillType {
 
 // TODO
 /*
-- Request an appointment with the provider username and put it in its busyPeriods.
+- while responding to the request first check logged in user is equal to requestedServiceProvider.
+If it is then switch isAccepted to true and set the requested period to serviceProvider's busyPeriod.
  */

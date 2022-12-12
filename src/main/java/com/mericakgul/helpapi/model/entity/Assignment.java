@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "assignment")
@@ -20,16 +19,19 @@ public class Assignment {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "customer_id")
-    private UUID customerId;
+    @Column(name = "customer_username")
+    private String customerUsername;
 
-    @Column(name = "provider_id")
-    private UUID providerId;
+    @Column(name = "provider_username")
+    private String serviceProviderUsername;
 
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
+
+    @Column(name = "is_accepted")
+    private Boolean isAccepted;
 
 }
