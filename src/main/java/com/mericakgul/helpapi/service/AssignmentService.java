@@ -46,7 +46,10 @@ public class AssignmentService {
         }
     }
 
-    //RespondAssignment
+    //Find assignment by customer name
+    //Find assignment by provider name
+    //Find assignment by customer name or provider name
+    //RespondAssignment and update busy period
 
     private boolean isRequestedServiceProviderSameAsLoggedInUser(String loggedInUsername, String providerUsername){
         return Objects.equals(loggedInUsername, providerUsername);
