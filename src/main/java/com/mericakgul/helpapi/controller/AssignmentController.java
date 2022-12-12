@@ -1,6 +1,7 @@
 package com.mericakgul.helpapi.controller;
 
-import com.mericakgul.helpapi.model.dto.AssignmentDto;
+import com.mericakgul.helpapi.model.dto.AssignmentRequest;
+import com.mericakgul.helpapi.model.dto.AssignmentResponse;
 import com.mericakgul.helpapi.service.AssignmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class AssignmentController {
     private final AssignmentService assignmentService;
 
     @PostMapping
-    public AssignmentDto save(@Valid @RequestBody AssignmentDto assignmentRequest){
+    public AssignmentResponse save(@Valid @RequestBody AssignmentRequest assignmentRequest){
         return this.assignmentService.save(assignmentRequest);
     }
 

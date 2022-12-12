@@ -11,9 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AssignmentDto {
-
-    private Long id;
+public class AssignmentRequest {
 
     @NotNull
     @NotEmpty
