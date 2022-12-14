@@ -118,7 +118,7 @@ public class UserService {
                 .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), requestedStartDate, requestedEndDate))
                 .toList();
     }
-    public boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, LocalDate requestedStartDate, LocalDate requestedEndDate){
+    boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, LocalDate requestedStartDate, LocalDate requestedEndDate){
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
                 .filter(busyPeriod ->
                     CompareDates.areDatesValid(requestedStartDate, requestedEndDate) &&
