@@ -18,6 +18,5 @@ public enum SkillType {
 
 // TODO
 /*
-- while responding to the request first check logged in user is equal to requestedServiceProvider.
-If it is then switch isAccepted to true and set the requested period to serviceProvider's busyPeriod.
+Eger waiting_rresponse'da ise ve customer name ile logged in ayni kullanici ise silme ve update etme ekleyebilirsin
  */

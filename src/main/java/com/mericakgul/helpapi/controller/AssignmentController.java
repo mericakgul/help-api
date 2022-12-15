@@ -2,8 +2,10 @@ package com.mericakgul.helpapi.controller;
 
 import com.mericakgul.helpapi.model.dto.AssignmentRequest;
 import com.mericakgul.helpapi.model.dto.AssignmentResponse;
+import com.mericakgul.helpapi.model.dto.RespondAssignmentDto;
 import com.mericakgul.helpapi.service.AssignmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,4 +55,9 @@ public class AssignmentController {
         return this.assignmentService.findAllByUsername(username);
     }
 
+    @PostMapping("/response")
+    public ResponseEntity<String> respondAssignmentById(@Valid @RequestBody RespondAssignmentDto respondAssignmentDto){
+        this.assignmentService.respondAssignmentById(respondAssignmentDto.getId(), respondAssignmentDto.isResponse());
+        return ResponseEntity.ok().body("The assignment has been updated.");
+    }
 }
