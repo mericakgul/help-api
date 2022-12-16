@@ -2,7 +2,7 @@ package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
-import com.mericakgul.helpapi.core.helper.UserExistence;
+import com.mericakgul.helpapi.core.helper.ObjectExistence;
 import com.mericakgul.helpapi.model.dto.AddressDto;
 import com.mericakgul.helpapi.model.entity.Address;
 import com.mericakgul.helpapi.model.entity.User;
@@ -21,7 +21,7 @@ import java.util.*;
 public class AddressService {
     private final AddressRepository addressRepository;
     private final DtoMapper dtoMapper;
-    private final UserExistence userExistence;
+    private final ObjectExistence objectExistence;
     private final ObjectUpdaterHelper objectUpdaterHelper;
 
     public List<AddressDto> findAll() {
@@ -34,7 +34,7 @@ public class AddressService {
     }
 
     public List<AddressDto> findAddressesByUsername(String username) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         List<Address> addressesOfUser = this.addressRepository.findAddressesByUserUuid(user.getUserUuid());
         return this.dtoMapper.mapListModel(addressesOfUser, AddressDto.class);
     }
@@ -46,7 +46,7 @@ public class AddressService {
 
     @Transactional
     public AddressDto saveAddressByUsername(String username, AddressDto addressRequest) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         if (Objects.equals(loggedInUsername, username)) {
             Address addressToSave = this.dtoMapper.mapModel(addressRequest, Address.class);

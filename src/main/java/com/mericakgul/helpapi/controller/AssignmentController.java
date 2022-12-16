@@ -58,6 +58,17 @@ public class AssignmentController {
     @PostMapping("/response")
     public ResponseEntity<String> respondAssignmentById(@Valid @RequestBody RespondAssignmentDto respondAssignmentDto){
         this.assignmentService.respondAssignmentById(respondAssignmentDto.getId(), respondAssignmentDto.isResponse());
-        return ResponseEntity.ok().body("The assignment has been updated.");
+        return ResponseEntity.ok().body("The assignment has been updated with your response.");
+    }
+
+    @PutMapping("/{id}")
+    public AssignmentResponse updateAssignmentById(@Valid @RequestBody AssignmentRequest assignmentRequest, @PathVariable Long id){
+        return this.assignmentService.updateAssignmentById(assignmentRequest, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAssignmentById(@PathVariable Long id){
+        this.assignmentService.deleteAssignmentById(id);
+        return ResponseEntity.ok().body("The assignment has been deleted.");
     }
 }

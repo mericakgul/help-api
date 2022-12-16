@@ -1,7 +1,7 @@
 package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
-import com.mericakgul.helpapi.core.helper.UserExistence;
+import com.mericakgul.helpapi.core.helper.ObjectExistence;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
@@ -21,11 +21,11 @@ public class UserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
     private final DtoMapper dtoMapper;
     private final BusyPeriodService busyPeriodService;
-    private final UserExistence userExistence;
+    private final ObjectExistence objectExistence;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userExistence.checkIfUserExistsAndReturn(username);
+        return objectExistence.checkIfUserExistsAndReturn(username);
     }
 
     public UserResponse save(UserRequest userRequest) {

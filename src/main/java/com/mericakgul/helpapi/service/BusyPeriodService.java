@@ -1,7 +1,7 @@
 package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
-import com.mericakgul.helpapi.core.helper.UserExistence;
+import com.mericakgul.helpapi.core.helper.ObjectExistence;
 import com.mericakgul.helpapi.core.util.CompareDates;
 import com.mericakgul.helpapi.model.dto.BusyPeriodDto;
 import com.mericakgul.helpapi.model.entity.BusyPeriod;
@@ -22,7 +22,7 @@ import java.util.*;
 public class BusyPeriodService {
     private final BusyPeriodRepository busyPeriodRepository;
     private final DtoMapper dtoMapper;
-    private final UserExistence userExistence;
+    private final ObjectExistence objectExistence;
 
     public List<BusyPeriodDto> findAll() {
         List<BusyPeriod> busyPeriods = this.busyPeriodRepository.findAll();
@@ -34,7 +34,7 @@ public class BusyPeriodService {
     }
 
     public List<BusyPeriodDto> findBusyPeriodsByUsername(String username) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         List<BusyPeriod> busyPeriodsOfUser = user.getBusyPeriods();
         return this.dtoMapper.mapListModel(busyPeriodsOfUser, BusyPeriodDto.class);
     }
@@ -57,7 +57,7 @@ public class BusyPeriodService {
 
     @Transactional
     public BusyPeriodDto saveBusyPeriodByUsername(String username, BusyPeriodDto busyPeriodRequest) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         if (Objects.equals(loggedInUsername, username) &&
                 CompareDates.areDatesValid(busyPeriodRequest.getStartDate(), busyPeriodRequest.getEndDate())) {
@@ -70,9 +70,7 @@ public class BusyPeriodService {
 
     @Transactional
     public BusyPeriodDto updateBusyPeriodByFields(LocalDate startDate, LocalDate endDate, BusyPeriodDto upToDateBusyPeriod) {
-        BusyPeriod currentBusyPeriod = this.busyPeriodRepository
-                .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
+        BusyPeriod currentBusyPeriod = this.objectExistence.checkIfBusyPeriodExistsAndReturn(startDate, endDate);
         if (this.isLoggedInUserAuthorisedToChangeBusyPeriod(currentBusyPeriod) &&
                 CompareDates.areDatesValid(upToDateBusyPeriod.getStartDate(), upToDateBusyPeriod.getEndDate())) {
             currentBusyPeriod.setStartDate(upToDateBusyPeriod.getStartDate());
@@ -95,9 +93,7 @@ public class BusyPeriodService {
 
     @Transactional
     public void deleteBusyPeriodByFields(LocalDate startDate, LocalDate endDate) {
-        BusyPeriod busyPeriodToDelete = this.busyPeriodRepository
-                .findBusyPeriodByStartDateAndEndDate(startDate, endDate)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no busy period found with these dates."));
+        BusyPeriod busyPeriodToDelete = this.objectExistence.checkIfBusyPeriodExistsAndReturn(startDate, endDate);
         if (this.isLoggedInUserAuthorisedToChangeBusyPeriod(busyPeriodToDelete)) {
             busyPeriodToDelete.setDeletedDate(new Date());
         } else {

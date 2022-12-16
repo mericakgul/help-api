@@ -5,7 +5,6 @@ import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.model.dto.LoginDto;
 import com.mericakgul.helpapi.model.dto.UserRequest;
 import com.mericakgul.helpapi.model.dto.UserResponse;
-import com.mericakgul.helpapi.model.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,6 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final TokenManager tokenManager;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final DtoMapper dtoMapper;
     private final UserDetailService userDetailService;
 
     public HttpHeaders login(LoginDto loginDto) {

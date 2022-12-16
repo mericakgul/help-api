@@ -2,7 +2,7 @@ package com.mericakgul.helpapi.service;
 
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
-import com.mericakgul.helpapi.core.helper.UserExistence;
+import com.mericakgul.helpapi.core.helper.ObjectExistence;
 import com.mericakgul.helpapi.core.util.CompareDates;
 import com.mericakgul.helpapi.enums.SkillType;
 import com.mericakgul.helpapi.model.dto.ServiceProviderFinderDto;
@@ -30,7 +30,7 @@ public class UserService {
     private final BusyPeriodService busyPeriodService;
     private final DtoMapper dtoMapper;
     private final ObjectUpdaterHelper objectUpdaterHelper;
-    private final UserExistence userExistence;
+    private final ObjectExistence objectExistence;
 
     public List<UserResponse> findAll() {
         List<User> userList = this.userRepository.findAll();
@@ -45,7 +45,7 @@ public class UserService {
     }
 
     public UserResponse findByUsername(String username) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         return this.dtoMapper.mapModel(user, UserResponse.class);
     }
 
@@ -62,7 +62,7 @@ public class UserService {
 
     @Transactional
     public UserResponse update(String username, UserRequest userRequest) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         if (Objects.equals(username, loggedInUsername)) {
             this.updateUserWithRelations(user, userRequest);
@@ -74,7 +74,7 @@ public class UserService {
 
     @Transactional
     public void deleteByUsername(String username) {
-        User user = userExistence.checkIfUserExistsAndReturn(username);
+        User user = objectExistence.checkIfUserExistsAndReturn(username);
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName(); // to retrieve password getPrincipal()
         if (Objects.equals(username, loggedInUsername)) {
             this.deleteUserRelations(user);

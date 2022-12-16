@@ -1,16 +1,20 @@
 package com.mericakgul.helpapi.model.entity;
 
+import com.mericakgul.helpapi.core.util.DeletedDateUtil;
 import com.mericakgul.helpapi.enums.AssignmentStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "assignment")
 @Getter
 @Setter
+@Where(clause = "DELETED_DATE = '1970-01-01 00:00:00.000'") // For Soft deleting
 public class Assignment {
 
     @Id
@@ -37,5 +41,8 @@ public class Assignment {
     @Column(name = "assignment_status")
     @Enumerated(EnumType.STRING)
     private AssignmentStatus assignmentStatus;
+
+    @Column(name = "deleted_date")
+    private Date deletedDate = DeletedDateUtil.getDefaultDeletedDate();
 
 }
