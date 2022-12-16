@@ -15,8 +15,3 @@ public enum SkillType {
     PLUMBER,
     SMITH
 }
-
-// TODO
-/*
-Eger waiting_rresponse'da ise ve customer name ile logged in ayni kullanici ise silme ve update etme ekleyebilirsin
- */
