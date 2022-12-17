@@ -5,7 +5,6 @@ import com.mericakgul.helpapi.model.dto.AssignmentRequest;
 import com.mericakgul.helpapi.model.entity.Address;
 import com.mericakgul.helpapi.model.entity.Assignment;
 import com.mericakgul.helpapi.model.entity.User;
-import com.mericakgul.helpapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
