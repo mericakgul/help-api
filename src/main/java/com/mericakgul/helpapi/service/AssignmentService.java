@@ -3,6 +3,7 @@ package com.mericakgul.helpapi.service;
 import com.mericakgul.helpapi.core.helper.DtoMapper;
 import com.mericakgul.helpapi.core.helper.ObjectExistence;
 import com.mericakgul.helpapi.core.helper.ObjectUpdaterHelper;
+import com.mericakgul.helpapi.core.util.CompareDates;
 import com.mericakgul.helpapi.enums.AssignmentStatus;
 import com.mericakgul.helpapi.model.dto.AssignmentRequest;
 import com.mericakgul.helpapi.model.dto.AssignmentResponse;
@@ -24,30 +25,26 @@ import java.util.*;
 public class AssignmentService {
     private final AssignmentRepository assignmentRepository;
     private final ObjectExistence objectExistence;
-    private final UserService userService;
     private final BusyPeriodService busyPeriodService;
     private final DtoMapper dtoMapper;
     private final ObjectUpdaterHelper objectUpdaterHelper;
+    private final UserService userService;
 
     @Transactional
     public AssignmentResponse save(AssignmentRequest assignmentRequest) {
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        String requestedServiceProviderUsername = assignmentRequest.getServiceProviderUsername();
-        if (Objects.equals(loggedInUsername, requestedServiceProviderUsername)) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider username cannot be equal to current logged in username.");
+        boolean areRequestedDatesValid = CompareDates.areDatesValid(assignmentRequest.getStartDate(), assignmentRequest.getEndDate());
+        boolean areAssignmentRequestFieldsValid = this.areFieldsValid(assignmentRequest, loggedInUsername);
+        if (areRequestedDatesValid && areAssignmentRequestFieldsValid) {
+            User serviceProviderUser = objectExistence.checkIfUserExistsAndReturn(assignmentRequest.getServiceProviderUsername());
+            Assignment assignment = this.dtoMapper.mapModel(assignmentRequest, Assignment.class);
+            this.setAssignmentUsernamesAndStatus(assignment, loggedInUsername, serviceProviderUser);
+            Assignment savedAssignment = this.assignmentRepository.save(assignment);
+            AssignmentResponse assignmentResponse = this.dtoMapper.mapModel(savedAssignment, AssignmentResponse.class);
+            this.setAssignmentResponseUsernames(assignmentResponse, assignmentRequest.getServiceProviderUsername(), loggedInUsername);
+            return assignmentResponse;
         } else {
-            User serviceProviderUser = objectExistence.checkIfUserExistsAndReturn(requestedServiceProviderUsername);
-            boolean isServiceProviderUserBusy = this.userService.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), assignmentRequest.getStartDate(), assignmentRequest.getEndDate());
-            if (isServiceProviderUserBusy) {
-                throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider is busy during the requested period.");
-            } else {
-                Assignment assignment = this.dtoMapper.mapModel(assignmentRequest, Assignment.class);
-                this.setAssignmentUsernamesAndStatus(assignment, loggedInUsername, serviceProviderUser);
-                Assignment savedAssignment = this.assignmentRepository.save(assignment);
-                AssignmentResponse assignmentResponse = this.dtoMapper.mapModel(savedAssignment, AssignmentResponse.class);
-                this.setAssignmentResponseUsernames(assignmentResponse, assignmentRequest.getServiceProviderUsername(), loggedInUsername);
-                return assignmentResponse;
-            }
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error has occurred");
         }
     }
 
@@ -92,7 +89,7 @@ public class AssignmentService {
         if (this.isAssignmentStatusUpdatable(assignment)) {
             assignment.setAssignmentStatus(assignmentStatus);
             this.assignmentRepository.save(assignment);
-            if(Objects.equals(assignmentStatus, AssignmentStatus.ACCEPTED)){
+            if (Objects.equals(assignmentStatus, AssignmentStatus.ACCEPTED)) {
                 this.updateBusyPeriodOfServiceProvider(assignment);
             }
         } else {
@@ -101,27 +98,28 @@ public class AssignmentService {
     }
 
     // TODO
-    // update edince user'in kendisini yapmayi da engelle
-    // tarihlerin validligini kontrol et
-    // yeni provider yeni tarihlerde uygun mu kontrol et update ederken
     // provider accept ederken de tekrar busy tarihleri kontrol etmek lazim.
 
     public AssignmentResponse updateAssignmentById(AssignmentRequest assignmentRequest, Long id) {
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         Assignment assignment = this.objectExistence.checkIfAssignmentExistAndReturn(id);
-        if (isAssignmentDeletableOrUpdatable(assignment)) {
+        boolean areRequestedDatesValid = CompareDates.areDatesValid(assignmentRequest.getStartDate(), assignmentRequest.getEndDate());
+        boolean isUpdatePossible = this.canYouDeleteOrUpdateTheAssignment(assignment) &&
+                this.areFieldsValid(assignmentRequest, loggedInUsername);
+        if (areRequestedDatesValid && isUpdatePossible) {
             this.objectUpdaterHelper.updateAssignmentObjectFields(assignment, assignmentRequest);
             Assignment savedAssignment = this.assignmentRepository.save(assignment);
             AssignmentResponse assignmentResponse = this.dtoMapper.mapModel(savedAssignment, AssignmentResponse.class);
             this.setAssignmentResponseUsernames(assignmentResponse, assignmentRequest.getServiceProviderUsername(), assignment.getCustomerUser().getUsername());
             return assignmentResponse;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This assignment cannot be updated because either you are not the customer of the assignment or the assignment has already got a response.");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error has occurred.");
         }
     }
 
     public void deleteAssignmentById(Long id) {
         Assignment assignment = this.objectExistence.checkIfAssignmentExistAndReturn(id);
-        if (isAssignmentDeletableOrUpdatable(assignment)) {
+        if (this.canYouDeleteOrUpdateTheAssignment(assignment)) {
             assignment.setDeletedDate(new Date());
             this.assignmentRepository.save(assignment);
         } else {
@@ -135,10 +133,30 @@ public class AssignmentService {
                 Objects.equals(assignment.getAssignmentStatus(), AssignmentStatus.WAITING_RESPONSE);
     }
 
-    private boolean isAssignmentDeletableOrUpdatable(Assignment assignment) {
+    private boolean canYouDeleteOrUpdateTheAssignment(Assignment assignment) {
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        return Objects.equals(loggedInUsername, assignment.getCustomerUser().getUsername()) &&
-                Objects.equals(assignment.getAssignmentStatus(), AssignmentStatus.WAITING_RESPONSE);
+        boolean isLoggedInUserCustomerOfAssignment = Objects.equals(loggedInUsername, assignment.getCustomerUser().getUsername());
+        boolean isAssignmentWaitingResponse = Objects.equals(assignment.getAssignmentStatus(), AssignmentStatus.WAITING_RESPONSE);
+        if(!isLoggedInUserCustomerOfAssignment){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "This assignment cannot be updated/deleted because you are not the customer of the assignment.");
+        } else if(!isAssignmentWaitingResponse){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "This assignment cannot be updated/deleted because the assignment has already got a response.");
+        } else return true;
+    }
+
+    public boolean areFieldsValid(AssignmentRequest assignmentRequest, String loggedInUsername) {
+        String requestedServiceProviderUsername = assignmentRequest.getServiceProviderUsername();
+        User serviceProviderUser = this.objectExistence.checkIfUserExistsAndReturn(requestedServiceProviderUsername);
+        if (Objects.equals(loggedInUsername, serviceProviderUser.getUsername())) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider username cannot be equal to current logged in username.");
+        } else {
+            boolean isServiceProviderUserBusy = this.userService.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), assignmentRequest.getStartDate(), assignmentRequest.getEndDate());
+            if (isServiceProviderUserBusy) {
+                throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider is busy during the requested period.");
+            } else {
+                return true;
+            }
+        }
     }
 
     private void updateBusyPeriodOfServiceProvider(Assignment assignment) {
@@ -159,5 +177,39 @@ public class AssignmentService {
         assignmentResponse.setServiceProviderUsername(serviceProviderUsername);
         assignmentResponse.setCustomerUsername(customerUsername);
     }
+
+
+    /*
+    Lambda function practice:
+
+    @Transactional
+    public AssignmentResponse save(AssignmentRequest assignmentRequest){
+        return this.validateFieldsAndSet(assignmentRequest, setAssignmentRelationsWhileSaving);
+    }
+
+    private AssignmentResponse validateFieldsAndSet(AssignmentRequest assignmentRequest, SetAssignmentRelations setAssignmentRelations) {
+        String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        String requestedServiceProviderUsername = assignmentRequest.getServiceProviderUsername();
+        if (Objects.equals(loggedInUsername, requestedServiceProviderUsername)) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider username cannot be equal to current logged in username.");
+        } else {
+            User serviceProviderUser = objectExistence.checkIfUserExistsAndReturn(requestedServiceProviderUsername);
+            boolean isServiceProviderUserBusy = this.userService.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), assignmentRequest.getStartDate(), assignmentRequest.getEndDate());
+            if (isServiceProviderUserBusy) {
+                throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The requested service provider is busy during the requested period.");
+            } else {
+                return setAssignmentRelations.setRelations(assignmentRequest, loggedInUsername, serviceProviderUser);
+            }
+        }
+    }
+    SetAssignmentRelations setAssignmentRelationsWhileSaving = (assignmentRequest, loggedInUsername, serviceProviderUser) -> {
+        Assignment assignment = this.dtoMapper.mapModel(assignmentRequest, Assignment.class);
+        this.setAssignmentUsernamesAndStatus(assignment, loggedInUsername, serviceProviderUser);
+        Assignment savedAssignment = this.assignmentRepository.save(assignment);
+        AssignmentResponse assignmentResponse = this.dtoMapper.mapModel(savedAssignment, AssignmentResponse.class);
+        this.setAssignmentResponseUsernames(assignmentResponse, assignmentRequest.getServiceProviderUsername(), loggedInUsername);
+        return assignmentResponse;
+    };
+     */
 
 }

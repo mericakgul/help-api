@@ -53,7 +53,7 @@ public class UserService {
         List<User> allUsers = this.userRepository.findAll();
         List<User> usersWhoHaveTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
         List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHaveTheSkill, serviceProviderFinderDto);
-        if(usersWhoAreAvailable.isEmpty()){
+        if (usersWhoAreAvailable.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available with this skill for these dates.");
         } else {
             return this.dtoMapper.mapListModel(usersWhoAreAvailable, UserResponse.class);
@@ -111,18 +111,22 @@ public class UserService {
                 .filter(user -> user.getSkills().contains(skill))
                 .toList();
     }
-    private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto){
+
+    private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto) {
         LocalDate requestedStartDate = serviceProviderFinderDto.getStartDate();
         LocalDate requestedEndDate = serviceProviderFinderDto.getEndDate();
-        return users.stream()
-                .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), requestedStartDate, requestedEndDate))
-                .toList();
+        if (CompareDates.areDatesValid(requestedStartDate, requestedEndDate)) {
+            return users.stream()
+                    .filter(serviceProviderUser -> !this.isServiceProviderUserBusy(serviceProviderUser.getBusyPeriods(), requestedStartDate, requestedEndDate))
+                    .toList();
+        } else {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occured");
+        }
     }
-    boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, LocalDate requestedStartDate, LocalDate requestedEndDate){
+
+    public boolean isServiceProviderUserBusy(List<BusyPeriod> busyPeriods, LocalDate requestedStartDate, LocalDate requestedEndDate) {
         Optional<BusyPeriod> overlapBusyPeriod = busyPeriods.stream()
-                .filter(busyPeriod ->
-                    CompareDates.areDatesValid(requestedStartDate, requestedEndDate) &&
-                    CompareDates.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
+                .filter(busyPeriod -> CompareDates.isThereOverlapBetweenDates(busyPeriod.getStartDate(), busyPeriod.getEndDate(), requestedStartDate, requestedEndDate))
                 .findFirst();
         return overlapBusyPeriod.isPresent();
     }

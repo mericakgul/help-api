@@ -28,8 +28,8 @@ public class CompareDates {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Start date cannot be in the past");
         } else if(endDate.isBefore(startDate)){
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "End date cannot be before start date");
-        } else if (startDate.isAfter(today.plusYears(2))){
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The start date cannot be beyond two years from today.");
+        } else if (endDate.isAfter(today.plusYears(2))){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The end date cannot be beyond two years from today.");
         } else return true;
     }
 }
