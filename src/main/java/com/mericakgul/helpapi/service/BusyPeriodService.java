@@ -126,7 +126,7 @@ public class BusyPeriodService {
                                 busyPeriod.getEndDate().isEqual(busyPeriodRequest.getEndDate())
                 ).findAny();
         if (busyPeriodInUser.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "The user already has this busy period.");
+            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "Already busy in this period.");
         } else return false;
 
     }

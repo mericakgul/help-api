@@ -88,17 +88,14 @@ public class AssignmentService {
         AssignmentStatus assignmentStatus = response ? AssignmentStatus.ACCEPTED : AssignmentStatus.REJECTED;
         if (this.isAssignmentStatusUpdatable(assignment)) {
             assignment.setAssignmentStatus(assignmentStatus);
-            this.assignmentRepository.save(assignment);
             if (Objects.equals(assignmentStatus, AssignmentStatus.ACCEPTED)) {
                 this.updateBusyPeriodOfServiceProvider(assignment);
             }
+            this.assignmentRepository.save(assignment);
         } else {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error has occurred.");
         }
     }
-
-    // TODO
-    // provider accept ederken de tekrar busy tarihleri kontrol etmek lazim.
 
     public AssignmentResponse updateAssignmentById(AssignmentRequest assignmentRequest, Long id) {
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
