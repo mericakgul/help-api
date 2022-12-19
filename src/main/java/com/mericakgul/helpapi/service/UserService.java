@@ -50,8 +50,7 @@ public class UserService {
     }
 
     public List<UserResponse> findServiceProvidersBySkillAndBusyPeriod(ServiceProviderFinderDto serviceProviderFinderDto) {
-        List<User> allUsers = this.userRepository.findAll();
-        List<User> usersWhoHaveTheSkill = this.filterUsersBySkill(allUsers, serviceProviderFinderDto.getSkill());
+        List<User> usersWhoHaveTheSkill = this.userRepository.findAllBySkillsContains(serviceProviderFinderDto.getSkill());
         List<User> usersWhoAreAvailable = this.filterUsersByAvailability(usersWhoHaveTheSkill, serviceProviderFinderDto);
         if (usersWhoAreAvailable.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no service provider user available with this skill for these dates.");
@@ -104,12 +103,6 @@ public class UserService {
         So this is not the best for performance wise because there will be extra and redundant processes
         in case there is no update in addresses and busy periods while updating a user.
          */
-    }
-
-    private List<User> filterUsersBySkill(List<User> users, SkillType skill) {
-        return users.stream()
-                .filter(user -> user.getSkills().contains(skill))
-                .toList();
     }
 
     private List<User> filterUsersByAvailability(List<User> users, ServiceProviderFinderDto serviceProviderFinderDto) {
