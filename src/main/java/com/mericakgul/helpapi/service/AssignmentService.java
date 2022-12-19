@@ -93,7 +93,7 @@ public class AssignmentService {
                 this.updateBusyPeriodOfServiceProvider(assignment);
             }
         } else {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Either you are not authorised to change this assignment because you are not the customer or the assignment has already been responded.");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error has occurred.");
         }
     }
 
@@ -129,8 +129,13 @@ public class AssignmentService {
 
     private boolean isAssignmentStatusUpdatable(Assignment assignment) {
         String loggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        return Objects.equals(loggedInUsername, assignment.getServiceProviderUser().getUsername()) &&
-                Objects.equals(assignment.getAssignmentStatus(), AssignmentStatus.WAITING_RESPONSE);
+        boolean isLoggedInUserServiceProviderOfAssignment = Objects.equals(loggedInUsername, assignment.getServiceProviderUser().getUsername());
+        boolean isAssignmentWaitingResponse = Objects.equals(assignment.getAssignmentStatus(), AssignmentStatus.WAITING_RESPONSE);
+        if(!isLoggedInUserServiceProviderOfAssignment){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You cannot respond this assignment since you are not the service provider of it.");
+        } else if(!isAssignmentWaitingResponse){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "You cannot respond this assignment since the assignment has already got a response.");
+        } else return true;
     }
 
     private boolean canYouDeleteOrUpdateTheAssignment(Assignment assignment) {
