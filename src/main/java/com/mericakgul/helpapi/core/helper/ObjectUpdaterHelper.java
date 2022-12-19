@@ -16,7 +16,7 @@ public class ObjectUpdaterHelper {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ObjectExistence objectExistence;
 
-    public void updateUserObjectPrimitiveFields(User currentUser, User upToDateUser){
+    public void updateUserObjectPrimitiveFields(User currentUser, User upToDateUser) {
         currentUser.setUsername(upToDateUser.getUsername());
         currentUser.setPassword(this.bCryptPasswordEncoder.encode(upToDateUser.getPassword()));
         currentUser.setFullName(upToDateUser.getFullName());
@@ -25,7 +25,7 @@ public class ObjectUpdaterHelper {
         currentUser.setSkills(upToDateUser.getSkills());
     }
 
-    public void updateAddressObjectPrimitiveFields(Address currentAddress, AddressDto upToDateAddress){
+    public void updateAddressObjectPrimitiveFields(Address currentAddress, AddressDto upToDateAddress) {
         currentAddress.setStreetName(upToDateAddress.getStreetName());
         currentAddress.setHouseNumber(upToDateAddress.getHouseNumber());
         currentAddress.setZipCode(upToDateAddress.getZipCode());
@@ -33,7 +33,7 @@ public class ObjectUpdaterHelper {
         currentAddress.setCountry(upToDateAddress.getCountry());
     }
 
-    public void updateAssignmentObjectFields(Assignment currentAssignment, AssignmentRequest upToDateAssignment){
+    public void updateAssignmentObjectFields(Assignment currentAssignment, AssignmentRequest upToDateAssignment) {
         User newServiceProviderUser = this.objectExistence.checkIfUserExistsAndReturn(upToDateAssignment.getServiceProviderUsername());
         currentAssignment.setDescription(upToDateAssignment.getDescription());
         currentAssignment.setServiceProviderUser(newServiceProviderUser);
