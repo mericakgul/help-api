@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n{\n    \"username\": \"mericakgul1\",\n    \"email\": \"mericakgul1@gmail.com\",\n    \"password\": \"Meric123\",\n    \"fullName\": \"Meric Akgul1\",\n    \"phoneNumber\": \"111111\",\n    \"description\": \"lala1\",\n    \"addresses\":[\n        {\n            \"streetName\": \"z\",\n            \"houseNumber\": \"9\",\n            \"zipCode\": \"7\",\n            \"city\": \"y\",\n            \"country\": \"i\"\n        },\n        {\n            \"streetName\": \"x\",\n            \"houseNumber\": \"97\",\n            \"zipCode\": \"56\",\n            \"city\": \"w\",\n            \"country\": \"p\"\n        }\n    ],\n    \"skills\": [\"CLEANER\", \"MECHANIC\"],\n    \"busyPeriods\": [\n        {\n            \"startDate\": \"1111-12-19\",\n            \"endDate\": \"2222-03-03\"\n        },\n        {\n            \"startDate\": \"3333-12-19\",\n            \"endDate\": \"4444-03-03\"\n        }\n    ]\n}",
+							"raw": "\n{\n    \"username\": \"mericakgul5\",\n    \"email\": \"mericakgul5@gmail.com\",\n    \"password\": \"Meric123\",\n    \"fullName\": \"Meric Akgul1\",\n    \"phoneNumber\": \"111111\",\n    \"description\": \"lala1\",\n    \"addresses\":[\n        {\n            \"streetName\": \"z\",\n            \"houseNumber\": \"9\",\n            \"zipCode\": \"7\",\n            \"city\": \"y\",\n            \"country\": \"i\"\n        },\n        {\n            \"streetName\": \"dfdf\",\n            \"houseNumber\": \"55\",\n            \"zipCode\": \"66\",\n            \"city\": \"uuuu\",\n            \"country\": \"popo\"\n        }\n    ],\n    \"skills\": [\"CLEANER\", \"MECHANIC\"],\n    \"busyPeriods\": [\n        {\n            \"startDate\": \"2023-06-11\",\n            \"endDate\": \"2023-06-13\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"mericakgul2\",\n    \"password\": \"Meric123\"\n}",
+							"raw": "{\n    \"username\": \"mericakgul\",\n    \"password\": \"Meric123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,7 +74,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMSIsImlhdCI6MTY2ODQ1ODYyMCwiZXhwIjoxNjY4NDU4OTIwfQ.UAvPjsEEeCXDb57KTvpi9LqMj2QgcfjMBLSMgmKWuzw",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUxNTY5LCJleHAiOjE2NzA0NTE4Njl9.pLgM_mDKVdT35kozRTSoC_rkQe7AJCQSbJuyyOSXp1M",
 								"type": "text"
 							}
 						],
@@ -125,13 +125,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4MzMwMjM1LCJleHAiOjE2NjgzMzA1MzV9.iZ1ggTs64jMna6WwvPdgD-mMLsSNmFhYOmqH0X9td9w",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUyNTEyLCJleHAiOjE2NzA0NTI4MTJ9.G-pGmjcfLT0bt5FfL2k13GUsJFO6NTPrh9my8zfm5NM",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"username\": \"mericakgul\",\n        \"email\": \"mericakgul@gmail.com\",\n        \"fullName\": \"Meric Akgul1\",\n        \"password\": \"Meric123\",\n        \"phoneNumber\": \"111111\",\n        \"description\": \"lala1\",\n        \"addresses\": [\n            {\n                \"streetName\": \"aaaaaaaaaaaa\",\n                \"houseNumber\": 2,\n                \"zipCode\": \"5\",\n                \"city\": \"ddddddddddddddddd\",\n                \"country\": \"ooooooooooooooooo\"\n            },\n            {\n                \"streetName\": \"bbbbbbbbbbbbbbb\",\n                \"houseNumber\": 8,\n                \"zipCode\": \"1\",\n                \"city\": \"eeeeeeeeeeeeeee\",\n                \"country\": \"uuuuuuuuuuuu\"\n            }\n        ],\n        \"skills\": [\n            \"CLEANER\",\n            \"MECHANIC\"\n        ],\n        \"busyPeriods\": [\n            {\n                \"startDate\": \"1111-12-19\",\n                \"endDate\": \"5432-03-03\"\n            },\n            {\n                \"startDate\": \"3333-12-19\",\n                \"endDate\": \"4444-03-03\"\n            }\n        ]\n    }",
+							"raw": "{\n        \"username\": \"mericakgul\",\n        \"email\": \"mericakgul@gmail.com\",\n        \"fullName\": \"Meric Akgul4\",\n        \"password\": \"Meric123\",\n        \"phoneNumber\": \"111111\",\n        \"description\": \"lala1\",\n        \"addresses\": [\n            {\n                \"streetName\": \"aaaaaaaaaaaa\",\n                \"houseNumber\": 2,\n                \"zipCode\": \"5\",\n                \"city\": \"ddddddddddddddddd\",\n                \"country\": \"ooooooooooooooooo\"\n            },\n            {\n                \"streetName\": \"bbbbbbbbbbbbbbb\",\n                \"houseNumber\": 8,\n                \"zipCode\": \"1\",\n                \"city\": \"eeeeeeeeeeeeeee\",\n                \"country\": \"uuuuuuuuuuuu\"\n            }\n        ],\n        \"skills\": [\n            \"CLEANER\",\n            \"MECHANIC\"\n        ],\n        \"busyPeriods\": [\n            {\n                \"startDate\": \"2023-08-22\",\n                \"endDate\": \"2023-09-21\"\n            }\n        ]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -160,7 +160,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4MzcyNDA0LCJleHAiOjE2NjgzNzI3MDR9.e62UnWXflxy-qY5RLErRYmmAd5XIpfuUfe0VF2psxwg",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDQzMTYyLCJleHAiOjE2NzA0NDM0NjJ9.ag4W63dPgPGQ8b8Tw87dR5IZQGQQABvQKvDUqEZKQe0",
 								"type": "text"
 							}
 						],
@@ -200,7 +200,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQzNzg1OSwiZXhwIjoxNjY4NDM4MTU5fQ.0bOliVFXyq5G1w4CrsrPvD8hcUntbh9D4H02LAPgPhg",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY3MDQ0MjY4NCwiZXhwIjoxNjcwNDQyOTg0fQ.r4-wfsVSdFxCFNAp9rL16crPMinZ9nd24PAzpMdCAlc",
 								"type": "text"
 							}
 						],
@@ -225,7 +225,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODM3MzA5NCwiZXhwIjoxNjY4MzczMzk0fQ.-5d2NKv044mR38__5gp1vAsWPsKI34qdmQzHROHTlos",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUyNTEyLCJleHAiOjE2NzA0NTI4MTJ9.G-pGmjcfLT0bt5FfL2k13GUsJFO6NTPrh9my8zfm5NM",
 								"type": "text"
 							}
 						],
@@ -251,13 +251,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4MjgwLCJleHAiOjE2Njg0Mzg1ODB9.Na6-ZSDyZeMAdCwKRwBiZH8-zHeMvA5k5nPS7U-pQ18",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDQyNzUxLCJleHAiOjE2NzA0NDMwNTF9.W2xnjuYCz_Hr3umiW3IfhVeNYo1PtjkZ8gJKAmMz9es",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"streetName\": \"xxx\",\n    \"houseNumber\": 5430,\n    \"zipCode\": \"9009\",\n    \"city\": \"den haag\",\n    \"country\": \"holland\"\n}",
+							"raw": "{\n    \"streetName\": \"dfdf\",\n    \"houseNumber\": 55,\n    \"zipCode\": \"66\",\n    \"city\": \"uuuu\",\n    \"country\": \"popo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -286,13 +286,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4MDQ3LCJleHAiOjE2Njg0MzgzNDd9.T_BfI1pkU2Kw0V3DrTWpk4GEipWnarQVuVuJn_J117M",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUyODM1LCJleHAiOjE2NzA0NTMxMzV9.iQlGySuYQehTYBnMJKI6z-uX9JXGH4A86VVeaHaC7uw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"streetName\": \"yyytytyt\",\n    \"houseNumber\": \"4444\",\n    \"zipCode\": \"8888\",\n    \"city\": \"den haag lalala\",\n    \"country\": \"holland lala\"\n}",
+							"raw": "{\n    \"streetName\": \"uyuyuy\",\n    \"houseNumber\": \"5\",\n    \"zipCode\": \"766\",\n    \"city\": \"denden\",\n    \"country\": \"holhol\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -300,7 +300,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/address?houseNumber=8&zipCode=1&city=e&country=u",
+							"raw": "http://localhost:8080/address?houseNumber=9&zipCode=7&city=y&country=i",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -312,19 +312,19 @@
 							"query": [
 								{
 									"key": "houseNumber",
-									"value": "8"
+									"value": "9"
 								},
 								{
 									"key": "zipCode",
-									"value": "1"
+									"value": "7"
 								},
 								{
 									"key": "city",
-									"value": "e"
+									"value": "y"
 								},
 								{
 									"key": "country",
-									"value": "u"
+									"value": "i"
 								}
 							]
 						}
@@ -338,7 +338,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjY4NDM4NDUwLCJleHAiOjE2Njg0Mzg3NTB9.TrD2SZkUf0eRPEiNnh_Np-ndHyT5JgPz5UB88ohQaEA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY3MDQ0MjY4NCwiZXhwIjoxNjcwNDQyOTg0fQ.r4-wfsVSdFxCFNAp9rL16crPMinZ9nd24PAzpMdCAlc",
 								"type": "text"
 							}
 						],
@@ -352,7 +352,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/address?houseNumber=5430&zipCode=9009&city=den haag&country=holland",
+							"raw": "http://localhost:8080/address?houseNumber=9&zipCode=7&city=y&country=i",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -364,19 +364,19 @@
 							"query": [
 								{
 									"key": "houseNumber",
-									"value": "5430"
+									"value": "9"
 								},
 								{
 									"key": "zipCode",
-									"value": "9009"
+									"value": "7"
 								},
 								{
 									"key": "city",
-									"value": "den haag"
+									"value": "y"
 								},
 								{
 									"key": "country",
-									"value": "holland"
+									"value": "i"
 								}
 							]
 						}
@@ -395,7 +395,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1MDkxNiwiZXhwIjoxNjY4NDUxMjE2fQ.s9Qbo1gmHnfiDUX0Neh6gDGUo-mUUPJ_3xyWDAGyH6M",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUxMDAwLCJleHAiOjE2NzA0NTEzMDB9.t7V5kCUhuvygVxY7u52dHSLObwACLhRIzS1GebsWDfs",
 								"type": "text"
 							}
 						],
@@ -420,7 +420,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODM3MzA5NCwiZXhwIjoxNjY4MzczMzk0fQ.-5d2NKv044mR38__5gp1vAsWPsKI34qdmQzHROHTlos",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDQyOTQzLCJleHAiOjE2NzA0NDMyNDN9.h_yX59CPfapMIp_Hs3NqTg4T9D14HD5j8RO3fJ2cs3g",
 								"type": "text"
 							}
 						],
@@ -446,13 +446,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1ODkxOCwiZXhwIjoxNjY4NDU5MjE4fQ.WifGlVQaOx--OEzRR9HC049yAIqxpkNnDYZN0NbLeYc",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsNCIsImlhdCI6MTY3MDQ1MjIyMCwiZXhwIjoxNjcwNDUyNTIwfQ.g9StLM24gyXvz01xJ_S99RAqMptSq_PIHR29PIx20j4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startDate\": \"1111-11-11\",\n    \"endDate\": \"1111-11-11\"\n}",
+							"raw": "{\n    \"startDate\": \"2023-02-11\",\n    \"endDate\": \"2023-02-14\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -460,7 +460,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/busyperiod/mericakgul2",
+							"raw": "http://localhost:8080/busyperiod/mericakgul4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -468,7 +468,7 @@
 							"port": "8080",
 							"path": [
 								"busyperiod",
-								"mericakgul2"
+								"mericakgul4"
 							]
 						}
 					},
@@ -481,13 +481,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMSIsImlhdCI6MTY2ODQ1ODc4MiwiZXhwIjoxNjY4NDU5MDgyfQ.GwDrbDz7zDiCpJTX01oLKReZfHtUP4QecsiezYJ0Ri4",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsNCIsImlhdCI6MTY3MDQ1MjIyMCwiZXhwIjoxNjcwNDUyNTIwfQ.g9StLM24gyXvz01xJ_S99RAqMptSq_PIHR29PIx20j4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startDate\": \"1111-11-11\",\n    \"endDate\": \"1111-11-11\"\n}",
+							"raw": "{\n    \"startDate\": \"2023-11-11\",\n    \"endDate\": \"2023-11-17\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -495,7 +495,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/busyperiod?startDate=1111-12-19&endDate=2222-03-03",
+							"raw": "http://localhost:8080/busyperiod?startDate=2023-02-11&endDate=2023-02-14",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -507,11 +507,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "1111-12-19"
+									"value": "2023-02-11"
 								},
 								{
 									"key": "endDate",
-									"value": "2222-03-03"
+									"value": "2023-02-14"
 								}
 							]
 						}
@@ -525,12 +525,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY2ODQ1ODk4NiwiZXhwIjoxNjY4NDU5Mjg2fQ.yfsuAJusJtydUECwZBIPekSUcUeYH6ka9j4rbl7zXTk",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUyNTEyLCJleHAiOjE2NzA0NTI4MTJ9.G-pGmjcfLT0bt5FfL2k13GUsJFO6NTPrh9my8zfm5NM",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/busyperiod?startDate=1111-11-11&endDate=1111-11-11",
+							"raw": "http://localhost:8080/busyperiod?startDate=2023-02-03&endDate=2023-02-13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -542,11 +542,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "1111-11-11"
+									"value": "2023-02-03"
 								},
 								{
 									"key": "endDate",
-									"value": "1111-11-11"
+									"value": "2023-02-13"
 								}
 							]
 						}
@@ -556,7 +556,7 @@
 			]
 		},
 		{
-			"name": "userFinder",
+			"name": "serviceProviderFinder",
 			"item": [
 				{
 					"name": "/user/serviceprovider",
@@ -565,13 +565,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpYyIsImlhdCI6MTY2ODUyNjgxMCwiZXhwIjoxNjY4NTI3MTEwfQ.YZJ8bS-G5uOf2dGQmr_o1CjyrlWIfEzxr9cCOAZD4GI",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNzg3NTc1LCJleHAiOjE2NzA3ODc4NzV9.P6berngQkAO8NjnvV6aV7M_aujNQTdgiPD2zsaeawf0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"skill\": \"ELECTRICIAN\",\n    \"startDate\": \"2023-02-04\",\n    \"endDate\": \"2023-02-11\"\n}",
+							"raw": "{\n    \"skill\": \"CLEANER\",\n    \"startDate\": \"2023-05-04\",\n    \"endDate\": \"2023-05-14\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -588,6 +588,283 @@
 							"path": [
 								"user",
 								"serviceprovider"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assignment",
+			"item": [
+				{
+					"name": "/assignment saveAssignment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"one\",\n    \"serviceProviderUsername\": \"mericakgul4\",\n    \"startDate\": \"2023-06-17\",\n    \"endDate\": \"2023-06-18\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/assignment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment findAllByLoggedInUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/customer findAllByLoggedInUsernameAsCustomer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/serviceProvider findAllByLoggedInUsernameAsServiceProvider",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/serviceProvider",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"serviceProvider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/customer/{customerUsername} findAllByCustomerUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/customer/mericakgul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"customer",
+								"mericakgul"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/serviceProvider/{serviceProviderUsername} findAllByServiceProviderUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/serviceProvider/mericakgul3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"serviceProvider",
+								"mericakgul3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/{username} findAllByUsername",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/mericakgul3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"mericakgul3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/response respondAssignmentById",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMTM1Njk2LCJleHAiOjE2NzExMzU5OTZ9.oFkgsbFq33dIXoyhIeXqFs-3HSdTG-6zIAWo7dN_Xgk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"4\",\n    \"response\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/assignment/response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/{id} updateAssignment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/assignment/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/assignment/{id} deleteAssignment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/assignment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignment",
+								"1"
 							]
 						}
 					},
