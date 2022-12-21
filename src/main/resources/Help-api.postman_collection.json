@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n{\n    \"username\": \"mericakgul5\",\n    \"email\": \"mericakgul5@gmail.com\",\n    \"password\": \"Meric123\",\n    \"fullName\": \"Meric Akgul1\",\n    \"phoneNumber\": \"111111\",\n    \"description\": \"lala1\",\n    \"addresses\":[\n        {\n            \"streetName\": \"z\",\n            \"houseNumber\": \"9\",\n            \"zipCode\": \"7\",\n            \"city\": \"y\",\n            \"country\": \"i\"\n        },\n        {\n            \"streetName\": \"dfdf\",\n            \"houseNumber\": \"55\",\n            \"zipCode\": \"66\",\n            \"city\": \"uuuu\",\n            \"country\": \"popo\"\n        }\n    ],\n    \"skills\": [\"CLEANER\", \"MECHANIC\"],\n    \"busyPeriods\": [\n        {\n            \"startDate\": \"2023-06-11\",\n            \"endDate\": \"2023-06-13\"\n        }\n    ]\n}",
+							"raw": "\n{\n    \"username\": \"mericakgul3\",\n    \"email\": \"mericakgul3@gmail.com\",\n    \"password\": \"Meric123\",\n    \"fullName\": \"Meric Akgul1\",\n    \"phoneNumber\": \"111111\",\n    \"description\": \"lala1\",\n    \"addresses\":[\n        {\n            \"streetName\": \"z\",\n            \"houseNumber\": \"9\",\n            \"zipCode\": \"7\",\n            \"city\": \"y\",\n            \"country\": \"i\"\n        },\n        {\n            \"streetName\": \"dfdf\",\n            \"houseNumber\": \"55\",\n            \"zipCode\": \"66\",\n            \"city\": \"uuuu\",\n            \"country\": \"popo\"\n        }\n    ],\n    \"skills\": [\"ELECTRICIAN\", \"PLUMBER\"],\n    \"busyPeriods\": [\n        {\n            \"startDate\": \"2023-04-11\",\n            \"endDate\": \"2023-04-13\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"mericakgul\",\n    \"password\": \"Meric123\"\n}",
+							"raw": "{\n    \"username\": \"mericakgul2\",\n    \"password\": \"Meric123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,7 +74,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUxNTY5LCJleHAiOjE2NzA0NTE4Njl9.pLgM_mDKVdT35kozRTSoC_rkQe7AJCQSbJuyyOSXp1M",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMjIzMjY2LCJleHAiOjE2NzEyMjM1NjZ9.qGvBcSTp9FyhFG2KEfmpVufLQq4vz6dg_bi6p3EmLvM",
 								"type": "text"
 							}
 						],
@@ -440,7 +440,7 @@
 					"response": []
 				},
 				{
-					"name": "/busyperiod/{username} add busy period to user",
+					"name": "/busyperiod/{username} addBusyPeriodToUser",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -452,7 +452,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startDate\": \"2023-02-11\",\n    \"endDate\": \"2023-02-14\"\n}",
+							"raw": "{\n    \"startDate\": \"2023-02-11\",\n    \"endDate\": \"2023-02-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -475,13 +475,13 @@
 					"response": []
 				},
 				{
-					"name": "/busyperiod?startDate={}&endDate={}",
+					"name": "/busyperiod?startDate={}&endDate={} updateBusyPeriodByFields",
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsNCIsImlhdCI6MTY3MDQ1MjIyMCwiZXhwIjoxNjcwNDUyNTIwfQ.g9StLM24gyXvz01xJ_S99RAqMptSq_PIHR29PIx20j4",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMjIzMDkyLCJleHAiOjE2NzEyMjMzOTJ9._bMhC7CXd0J0Df8EmZYJGTHh8JW-HpCz4AuGlox2lyU",
 								"type": "text"
 							}
 						],
@@ -495,7 +495,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/busyperiod?startDate=2023-02-11&endDate=2023-02-14",
+							"raw": "http://localhost:8080/busyperiod?startDate=2023-06-11&endDate=2023-06-13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -507,11 +507,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "2023-02-11"
+									"value": "2023-06-11"
 								},
 								{
 									"key": "endDate",
-									"value": "2023-02-14"
+									"value": "2023-06-13"
 								}
 							]
 						}
@@ -519,18 +519,18 @@
 					"response": []
 				},
 				{
-					"name": "/busyperiod?startDate={}&endDate={}",
+					"name": "/busyperiod?startDate={}&endDate={} deleteBusyPeriodByFields",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNDUyNTEyLCJleHAiOjE2NzA0NTI4MTJ9.G-pGmjcfLT0bt5FfL2k13GUsJFO6NTPrh9my8zfm5NM",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMjIzMDkyLCJleHAiOjE2NzEyMjMzOTJ9._bMhC7CXd0J0Df8EmZYJGTHh8JW-HpCz4AuGlox2lyU",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/busyperiod?startDate=2023-02-03&endDate=2023-02-13",
+							"raw": "http://localhost:8080/busyperiod?startDate=2023-11-11&endDate=2023-11-17",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -542,11 +542,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "2023-02-03"
+									"value": "2023-11-11"
 								},
 								{
 									"key": "endDate",
-									"value": "2023-02-13"
+									"value": "2023-11-17"
 								}
 							]
 						}
@@ -559,19 +559,19 @@
 			"name": "serviceProviderFinder",
 			"item": [
 				{
-					"name": "/user/serviceprovider",
+					"name": "/user/serviceprovider findAvailableServiceProvider",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcwNzg3NTc1LCJleHAiOjE2NzA3ODc4NzV9.P6berngQkAO8NjnvV6aV7M_aujNQTdgiPD2zsaeawf0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxNDg0NzQxLCJleHAiOjE2NzE0ODUwNDF9.CRegU2eqQ2iDKQIRiCV9N9YaT4z-VlbSZBiz9dlKqrI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"skill\": \"CLEANER\",\n    \"startDate\": \"2023-05-04\",\n    \"endDate\": \"2023-05-14\"\n}",
+							"raw": "{\n    \"skill\": \"COOK\",\n    \"startDate\": \"2023-04-11\",\n    \"endDate\": \"2023-09-12\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -605,13 +605,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMyIsImlhdCI6MTY3MTQ4Njg5MiwiZXhwIjoxNjcxNDg3MTkyfQ.8G1LUW31XKhcqPLZW4h2v6udQyx-suWZM2WkQBtri3U",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"description\": \"one\",\n    \"serviceProviderUsername\": \"mericakgul4\",\n    \"startDate\": \"2023-06-17\",\n    \"endDate\": \"2023-06-18\"\n}",
+							"raw": "{\n    \"description\": \"son2\",\n    \"serviceProviderUsername\": \"mericakgul2\",\n    \"startDate\": \"2024-01-13\",\n    \"endDate\": \"2024-01-18\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -639,7 +639,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxNDc5NTI0LCJleHAiOjE2NzE0Nzk4MjR9.f5T4GewA2PheoUu-kTeLyVddC8ii5U-dsDpjK6z58ow",
 								"type": "text"
 							}
 						],
@@ -664,7 +664,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxNDc5NTI0LCJleHAiOjE2NzE0Nzk4MjR9.f5T4GewA2PheoUu-kTeLyVddC8ii5U-dsDpjK6z58ow",
 								"type": "text"
 							}
 						],
@@ -690,7 +690,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxNDc5NTI0LCJleHAiOjE2NzE0Nzk4MjR9.f5T4GewA2PheoUu-kTeLyVddC8ii5U-dsDpjK6z58ow",
 								"type": "text"
 							}
 						],
@@ -716,12 +716,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsNSIsImlhdCI6MTY3MTA1NDY2NywiZXhwIjoxNjcxMDU0OTY3fQ.hgJAZxYdlIKPew9zf-cvEdaB8GWrdJGL9m390BuixSg",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/assignment/customer/mericakgul",
+							"raw": "http://localhost:8080/assignment/customer/mericakgul4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -730,7 +730,7 @@
 							"path": [
 								"assignment",
 								"customer",
-								"mericakgul"
+								"mericakgul4"
 							]
 						}
 					},
@@ -743,12 +743,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMDUyODU3LCJleHAiOjE2NzEwNTMxNTd9.bTLOTtmDzEeZEhLowAbRAr51rLLWR62B7KYZnzvy6wA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsNSIsImlhdCI6MTY3MTA1NDY2NywiZXhwIjoxNjcxMDU0OTY3fQ.hgJAZxYdlIKPew9zf-cvEdaB8GWrdJGL9m390BuixSg",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/assignment/serviceProvider/mericakgul3",
+							"raw": "http://localhost:8080/assignment/serviceProvider/mericakgul2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -757,14 +757,14 @@
 							"path": [
 								"assignment",
 								"serviceProvider",
-								"mericakgul3"
+								"mericakgul2"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/assignment/{username} findAllByUsername",
+					"name": "/assignment/all/{username} findAllByUsername",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -796,13 +796,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxMTM1Njk2LCJleHAiOjE2NzExMzU5OTZ9.oFkgsbFq33dIXoyhIeXqFs-3HSdTG-6zIAWo7dN_Xgk",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsMiIsImlhdCI6MTY3MTQ4NjkzNSwiZXhwIjoxNjcxNDg3MjM1fQ.hQ_tGeCWBPTWzYUeDgfdbpp24MdkTp_dEBSn6W4msKA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"4\",\n    \"response\": true\n}",
+							"raw": "{\n    \"id\": \"2\",\n    \"response\": \"true\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -825,10 +825,25 @@
 					"response": []
 				},
 				{
-					"name": "/assignment/{id} updateAssignment",
+					"name": "/assignment/{id} updateAssignmentById",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJpY2FrZ3VsIiwiaWF0IjoxNjcxNDgyMzg5LCJleHAiOjE2NzE0ODI2ODl9.s7nhJAQ9DBVRkU5PyX1HuwUdRTAyMkTjGBmVWoGOPPw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"hathatkdf\",\n    \"serviceProviderUsername\": \"mericakgul2\",\n    \"startDate\": \"2023-06-29\",\n    \"endDate\": \"2023-09-30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/assignment/2",
 							"protocol": "http",
@@ -845,7 +860,7 @@
 					"response": []
 				},
 				{
-					"name": "/assignment/{id} deleteAssignment",
+					"name": "/assignment/{id} deleteAssignmentById",
 					"request": {
 						"method": "DELETE",
 						"header": [

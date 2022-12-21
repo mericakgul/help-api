@@ -39,7 +39,7 @@ public class HelpSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] whiteList = {"/auth/**","/healthcheck"};
+        String[] whiteList = {"/auth/**","/healthcheck", "/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**"};
         http.csrf().disable()
                 .authorizeRequests().antMatchers(whiteList).permitAll().anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

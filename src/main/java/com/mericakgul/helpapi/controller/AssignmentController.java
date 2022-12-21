@@ -50,7 +50,7 @@ public class AssignmentController {
         return this.assignmentService.findByServiceProviderUsername(serviceProviderUsername);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/all/{username}")
     public List<AssignmentResponse> findAllByUsername(@PathVariable String username){
         return this.assignmentService.findAllByUsername(username);
     }
