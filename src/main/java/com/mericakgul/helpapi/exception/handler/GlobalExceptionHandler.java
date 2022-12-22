@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
     // This exception handler is to validate if the dto in the request is valid. To do that we add @Valid annotation next to @RequestBody annotation in controller method.
     // So if a field in dto object has @NotNull annotation and if this field is sent null in the request by client then we handle this exception thanks to this handler,
     // so the validation is done in the controller layer before reaching the service layer.
+    // @Valid annotation is doing the validation by checking the annotations added to the fields of the dto models but only throws exception. Here we just handle that exception.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
