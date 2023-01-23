@@ -1,7 +1,7 @@
 package com.mericakgul.helpapi.config;
 
 import com.mericakgul.helpapi.auth.JwtTokenFilter;
-import com.mericakgul.helpapi.service.UserDetailService;
+import com.mericakgul.helpapi.service.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class HelpSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenFilter jwtTokenFilter;
 
-    private final UserDetailService userDetailService;
+    private final MyUserDetailsService myUserDetailsService;
 
     @Bean
     public AuthenticationManager authenticationManagerBeanInit() throws Exception {
@@ -34,7 +34,7 @@ public class HelpSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailService).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(this.myUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override

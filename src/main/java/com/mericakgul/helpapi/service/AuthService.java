@@ -21,7 +21,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final TokenManager tokenManager;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final UserDetailService userDetailService;
+    private final MyUserDetailsService myUserDetailsService;
 
     public HttpHeaders login(LoginDto loginDto) {
         if(loginDto != null) {
@@ -37,7 +37,7 @@ public class AuthService {
     public UserResponse signUp(UserRequest userRequest){
         try{
             userRequest.setPassword((this.bCryptPasswordEncoder.encode(userRequest.getPassword())));
-            return this.userDetailService.save(userRequest);
+            return this.myUserDetailsService.save(userRequest);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

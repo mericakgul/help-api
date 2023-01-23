@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final DtoMapper dtoMapper;
     private final BusyPeriodService busyPeriodService;
@@ -36,4 +36,6 @@ public class UserDetailService implements UserDetailsService {
         User savedUser = this.userRepository.save(user);
         return this.dtoMapper.mapModel(savedUser, UserResponse.class);
     }
+
+    // ObjectExistence icindeki methodlari buraya tasi, kullanilan yerlerde de UserDetailService'i kullan.
 }

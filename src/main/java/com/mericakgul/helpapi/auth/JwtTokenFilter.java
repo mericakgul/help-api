@@ -1,6 +1,6 @@
 package com.mericakgul.helpapi.auth;
 
-import com.mericakgul.helpapi.service.UserDetailService;
+import com.mericakgul.helpapi.service.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +22,7 @@ import java.util.Objects;
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final TokenManager tokenManager;
-    private final UserDetailService userDetailService;
+    private final MyUserDetailsService myUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         if (token != null && username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (this.tokenManager.hasTokenValid(token)) {
-                UserDetails user = this.userDetailService.loadUserByUsername(username);
+                UserDetails user = this.myUserDetailsService.loadUserByUsername(username);
                 if (Objects.nonNull(user)) {
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
