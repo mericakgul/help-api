@@ -38,7 +38,7 @@ git clone https://github.com/mericakgul/help-api.git
 
 or
 * Run the following command in the directory of the project in the terminal. 
-   You do not need to install maven to your computer since the project has mvn wrapper so just run the following command but in the direction of where pom.xml is.
+   You do not need to install maven to your computer since the project has mvn wrapper so just run the following command but in the directory of where pom.xml is.
 ```
 ./mvnw spring-boot:run
 ```
