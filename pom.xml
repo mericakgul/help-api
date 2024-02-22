@@ -18,7 +18,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <postgresql.driver.version>42.5.0</postgresql.driver.version>
+        <postgresql.driver.version>42.5.5</postgresql.driver.version>
         <lombok.version>1.18.24</lombok.version>
         <model.mapper.version>3.1.0</model.mapper.version>
         <jjwt.version>0.9.1</jjwt.version>
